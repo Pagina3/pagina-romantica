@@ -12,8 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initEnvelope();
   initLoveCounter();
   initFirstDateMap();
+  initTicketStamp();
+  initFlipCards();
   initLoveMeter();
   initSurpriseQuotes();
+  initScratchCard();
   initModalAndPromises();
   initRomanticMusic();
   initClickHearts();
@@ -21,10 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================
-   1. CANVAS DE CORAZONES FLOTANTES DE FONDO
+   1. CANVAS DE CORAZONES FLOTANTES Y PÉTALOS DE ROSAS
    ========================================================== */
 function initHeartCanvas() {
   const canvas = document.getElementById('heartCanvas');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
   let width = canvas.width = window.innerWidth;
@@ -36,6 +40,7 @@ function initHeartCanvas() {
   });
 
   const hearts = [];
+  const petals = [];
   const heartColors = [
     'rgba(239, 35, 60, 0.45)',
     'rgba(217, 4, 41, 0.40)',
@@ -80,7 +85,6 @@ function initHeartCanvas() {
       ctx.beginPath();
       
       const s = this.size / 15;
-      // Dibujar forma de corazón con curvas Bezier
       ctx.moveTo(0, 0);
       ctx.bezierCurveTo(-10 * s, -10 * s, -20 * s, 5 * s, 0, 20 * s);
       ctx.bezierCurveTo(20 * s, 5 * s, 10 * s, -10 * s, 0, 0);
@@ -89,9 +93,55 @@ function initHeartCanvas() {
     }
   }
 
-  // Crear 45 corazones flotantes
-  for (let i = 0; i < 45; i++) {
+  class FallingPetal {
+    constructor() {
+      this.reset();
+      this.y = Math.random() * height;
+    }
+
+    reset() {
+      this.x = Math.random() * width;
+      this.y = -25;
+      this.size = Math.random() * 10 + 8;
+      this.speedY = Math.random() * 0.8 + 0.4;
+      this.speedX = (Math.random() - 0.5) * 0.5;
+      this.angle = Math.random() * Math.PI * 2;
+      this.angleSpeed = (Math.random() - 0.5) * 0.025;
+      this.swayAngle = Math.random() * Math.PI * 2;
+      this.swaySpeed = Math.random() * 0.02 + 0.01;
+      this.opacity = Math.random() * 0.45 + 0.3;
+      this.color = Math.random() > 0.4 ? 'rgba(239, 35, 60, ' : 'rgba(255, 77, 109, ';
+    }
+
+    update() {
+      this.y += this.speedY;
+      this.swayAngle += this.swaySpeed;
+      this.x += Math.sin(this.swayAngle) * 0.8 + this.speedX;
+      this.angle += this.angleSpeed;
+
+      if (this.y > height + 30 || this.x < -30 || this.x > width + 30) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.angle);
+      ctx.fillStyle = this.color + this.opacity + ')';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, this.size, this.size * 0.55, Math.PI / 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  // 35 corazones flotantes ascendentes y 25 pétalos descendentes
+  for (let i = 0; i < 35; i++) {
     hearts.push(new FloatingHeart());
+  }
+  for (let i = 0; i < 25; i++) {
+    petals.push(new FallingPetal());
   }
 
   function animate() {
@@ -99,6 +149,10 @@ function initHeartCanvas() {
     hearts.forEach(h => {
       h.update();
       h.draw();
+    });
+    petals.forEach(p => {
+      p.update();
+      p.draw();
     });
     requestAnimationFrame(animate);
   }
@@ -385,6 +439,23 @@ function initRomanticMusic() {
     synthTimerId = setTimeout(scheduleNextSynthNote, step.dur * 750);
   }
 
+  function updateDedicationUI(playing, trackIdx) {
+    const vinylDisc = document.getElementById('vinylDisc');
+    const dedicationIcon = document.getElementById('dedicationPlayIcon');
+    const dedicationText = document.getElementById('dedicationPlayText');
+    if (!vinylDisc) return;
+
+    if (playing && trackIdx === 0) {
+      vinylDisc.classList.add('spinning');
+      if (dedicationIcon) dedicationIcon.textContent = '⏸️';
+      if (dedicationText) dedicationText.textContent = 'Pausar Canción';
+    } else {
+      vinylDisc.classList.remove('spinning');
+      if (dedicationIcon) dedicationIcon.textContent = '▶️';
+      if (dedicationText) dedicationText.textContent = 'Escuchar Nuestra Canción';
+    }
+  }
+
   function playCurrentTrack() {
     const track = tracks[currentTrackIdx];
     isPlaying = true;
@@ -408,6 +479,7 @@ function initRomanticMusic() {
 
     if (musicWidget) musicWidget.classList.add('playing');
     if (playIcon) playIcon.textContent = '⏸';
+    updateDedicationUI(true, currentTrackIdx);
   }
 
   function pauseCurrentTrack() {
@@ -417,6 +489,7 @@ function initRomanticMusic() {
 
     if (musicWidget) musicWidget.classList.remove('playing');
     if (playIcon) playIcon.textContent = '▶';
+    updateDedicationUI(false, currentTrackIdx);
   }
 
   function togglePlay() {
@@ -445,10 +518,23 @@ function initRomanticMusic() {
     if (wasPlaying) {
       playCurrentTrack();
     }
+    updateDedicationUI(wasPlaying, currentTrackIdx);
   }
 
   if (musicToggle) {
     musicToggle.addEventListener('click', togglePlay);
+  }
+
+  const btnPlayDedication = document.getElementById('btnPlayDedication');
+  if (btnPlayDedication) {
+    btnPlayDedication.addEventListener('click', () => {
+      if (currentTrackIdx !== 0) {
+        selectTrack(0);
+        playCurrentTrack();
+      } else {
+        togglePlay();
+      }
+    });
   }
 
   if (nextTrackBtn) {
@@ -586,3 +672,176 @@ function initFirstDateMap() {
     </div>
   `).openPopup();
 }
+
+/* ==========================================================
+   11. BOLETO AL INFINITO - VALIDACIÓN Y SELLO
+   ========================================================== */
+function initTicketStamp() {
+  const stampBtn = document.getElementById('stampTicketBtn');
+  const ticketSeal = document.getElementById('ticketSeal');
+  if (!stampBtn || !ticketSeal) return;
+
+  stampBtn.addEventListener('click', () => {
+    ticketSeal.classList.add('show');
+    stampBtn.classList.add('stamped');
+    stampBtn.innerHTML = '<span>✅ Boleto Sellado</span>';
+    burstHeartsAtElement(ticketSeal, 25);
+  });
+}
+
+/* ==========================================================
+   12. TARJETAS 3D FLIP DE PROMESAS
+   ========================================================== */
+function initFlipCards() {
+  const cards = document.querySelectorAll('.flip-card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+      burstHeartsAtElement(card, 8);
+    });
+  });
+}
+
+/* ==========================================================
+   13. TARJETA RASPE INTERACTIVA (CANVAS)
+   ========================================================== */
+function initScratchCard() {
+  const canvas = document.getElementById('scratchCanvas');
+  const revealBtn = document.getElementById('btnScratchReveal');
+  const promptText = document.getElementById('scratchPromptText');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let isDrawing = false;
+  let isRevealed = false;
+
+  function resizeCanvas() {
+    if (isRevealed) return;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width || 480;
+    canvas.height = rect.height || 260;
+    drawScratchLayer();
+  }
+
+  function drawScratchLayer() {
+    if (isRevealed) return;
+    const w = canvas.width;
+    const h = canvas.height;
+
+    // Fondo degradado carmesí y rubí satinado
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#d90429');
+    grad.addColorStop(0.4, '#ef233c');
+    grad.addColorStop(0.8, '#b7094c');
+    grad.addColorStop(1, '#800f2f');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Destellos dorados y blancos
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+    for (let i = 0; i < 40; i++) {
+      const rx = (i * 53) % w;
+      const ry = (i * 37) % h;
+      ctx.beginPath();
+      ctx.arc(rx, ry, (i % 3) + 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Texto instructivo sobre la lámina
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 18px Montserrat, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✨ Raspa aquí con tu dedo o mouse ✨', w / 2, h / 2 - 14);
+
+    ctx.font = '14px Montserrat, sans-serif';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+    ctx.fillText('Descubre mi promesa secreta ❤️', w / 2, h / 2 + 16);
+  }
+
+  setTimeout(resizeCanvas, 60);
+  window.addEventListener('resize', () => {
+    if (!isRevealed) resizeCanvas();
+  });
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return {
+      x: (clientX - rect.left) * (canvas.width / rect.width),
+      y: (clientY - rect.top) * (canvas.height / rect.height)
+    };
+  }
+
+  function scratch(pos) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, 26, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function checkScratchPercentage() {
+    if (isRevealed) return;
+    try {
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const pixels = imgData.data;
+      let transparentCount = 0;
+      const step = 16;
+      const totalSampled = pixels.length / step;
+
+      for (let i = 3; i < pixels.length; i += step) {
+        if (pixels[i] === 0) transparentCount++;
+      }
+
+      const scratchedRatio = transparentCount / totalSampled;
+      if (scratchedRatio > 0.35) {
+        revealSecret();
+      }
+    } catch (e) {
+      // Ignorar restricciones si aplican
+    }
+  }
+
+  function revealSecret() {
+    if (isRevealed) return;
+    isRevealed = true;
+    canvas.style.transition = 'opacity 0.8s ease';
+    canvas.style.opacity = '0';
+    canvas.style.pointerEvents = 'none';
+
+    if (promptText) {
+      promptText.innerHTML = '¡Secreto Revelado Con Todo Mi Amor! ✨❤️';
+      promptText.style.color = '#d90429';
+    }
+
+    if (revealBtn) {
+      revealBtn.style.display = 'none';
+    }
+
+    burstHeartsAtElement(canvas, 30);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (isRevealed) return;
+    isDrawing = true;
+    scratch(getPos(e));
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || isRevealed) return;
+    scratch(getPos(e));
+  });
+
+  window.addEventListener('pointerup', () => {
+    if (isDrawing) {
+      isDrawing = false;
+      checkScratchPercentage();
+    }
+  });
+
+  if (revealBtn) {
+    revealBtn.addEventListener('click', revealSecret);
+  }
+}
+

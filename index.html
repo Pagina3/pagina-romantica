@@ -22,7 +22,7 @@
   <meta http-equiv="Expires" content="0">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <link rel="stylesheet" href="styles.css?v=2.0">
+  <link rel="stylesheet" href="styles.css?v=2.2">
 </head>
 <body>
 
@@ -200,6 +200,76 @@
       </div>
     </section>
 
+    <!-- SECCIÓN: Boleto al Infinito -->
+    <section class="section-container ticket-section">
+      <div class="section-heading">
+        <span class="tag">Destino: Toda la vida</span>
+        <h2>Nuestro Pasaje al Infinito</h2>
+        <p>Un viaje que comenzó el 10 de enero y no tiene fecha de regreso</p>
+      </div>
+
+      <div class="ticket-wrapper">
+        <div class="love-ticket" id="loveTicket">
+          <div class="ticket-left">
+            <div class="ticket-header-small">
+              <span class="ticket-airline">✈️ AEROLÍNEAS DEL AMOR</span>
+              <span class="ticket-class">PRIMERA CLASE VIP</span>
+            </div>
+            <div class="ticket-cities">
+              <div class="city-box">
+                <span class="city-code">10-ENE</span>
+                <span class="city-name">Donde Todo Empezó</span>
+              </div>
+              <div class="flight-icon">
+                <span class="flight-line"></span>
+                <span class="plane-heart">✈️❤️</span>
+              </div>
+              <div class="city-box">
+                <span class="city-code">∞-AMOR</span>
+                <span class="city-name">Para Toda La Vida</span>
+              </div>
+            </div>
+            <div class="ticket-details-grid">
+              <div class="detail-item">
+                <span class="detail-label">PASAJERA DE HONOR</span>
+                <span class="detail-val">La mujer más hermosa del mundo</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">VUELO</span>
+                <span class="detail-val">JB-TEAMO-2026</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">ASIENTO</span>
+                <span class="detail-val">En lo más profundo de mi corazón</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">EQUIPAJE</span>
+                <span class="detail-val">Besos y abrazos infinitos</span>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-divider">
+            <div class="notch notch-top"></div>
+            <div class="dotted-line"></div>
+            <div class="notch notch-bottom"></div>
+          </div>
+          <div class="ticket-right">
+            <div class="ticket-badge-right">PASAJERA VIP</div>
+            <div class="barcode">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <button class="btn-stamp-ticket" id="stampTicketBtn">
+              <span id="stampIcon">❤️</span>
+              <span id="stampText">Validar Boleto</span>
+            </button>
+            <div class="ticket-valid-seal" id="ticketSeal">
+              <span>SELLADO CON AMOR ETERNO ❤️</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SECCIÓN: Razones por las que te Amo -->
     <section class="section-container reasons-section">
       <div class="section-heading">
@@ -243,6 +313,73 @@
           <div class="reason-icon">♾️</div>
           <h3>Simplemente Eres Tú</h3>
           <p>Te amo exactamente como eres, con cada detalle, cada gesto y cada mirada. Eres perfecta para mí.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Nuestras Promesas -->
+    <section class="section-container promises-cards-section">
+      <div class="section-heading">
+        <span class="tag">Desde mi corazón</span>
+        <h2>Mis Promesas Para Ti</h2>
+        <p>Toca cada tarjeta para girarla y leer lo que prometo cuidarte</p>
+      </div>
+
+      <div class="flip-cards-grid">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-icon">🌧️✨</div>
+              <h3>En los días difíciles</h3>
+              <span class="flip-hint">Toca para voltear 🔄</span>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-back-heart">❤️</div>
+              <p>Prometo ser tu refugio seguro, abrazarte sin soltarte, escuchar tus silencios y recordarte siempre lo valiosa, hermosa y fuerte que eres.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-icon">🌍🤝</div>
+              <h3>En cada aventura</h3>
+              <span class="flip-hint">Toca para voltear 🔄</span>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-back-heart">❤️</div>
+              <p>Prometo tomar tu mano, caminar contigo sin importar a dónde nos lleve el camino, apoyarte en cada sueño y sacarte una sonrisa todos los días.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-icon">🌅🏡</div>
+              <h3>En nuestro futuro</h3>
+              <span class="flip-hint">Toca para voltear 🔄</span>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-back-heart">❤️</div>
+              <p>Prometo construir a tu lado una vida llena de paz, risas interminables, complicidad y momentos mágicos que recordemos para siempre.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-icon">♾️💖</div>
+              <h3>En cada amanecer</h3>
+              <span class="flip-hint">Toca para voltear 🔄</span>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-back-heart">❤️</div>
+              <p>Prometo elegirte cada día, mirarte con la misma ilusión del primer instante y amarte cada segundo un poquito más que ayer.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -331,6 +468,60 @@
       </div>
     </section>
 
+    <!-- SECCIÓN: Nuestra Canción Dedicada -->
+    <section class="section-container song-dedication-section">
+      <div class="section-heading">
+        <span class="tag">Nuestra Canción Especial 🎶</span>
+        <h2>La Melodía Que Me Recuerda a Ti</h2>
+        <p>Una canción que siempre guardaré en mi corazón pensando en nosotros</p>
+      </div>
+
+      <div class="song-card">
+        <div class="vinyl-visual-container">
+          <div class="vinyl-disc-wrapper" id="vinylDiscWrapper">
+            <div class="vinyl-disc" id="vinylDisc">
+              <div class="vinyl-groove groove-1"></div>
+              <div class="vinyl-groove groove-2"></div>
+              <div class="vinyl-groove groove-3"></div>
+              <div class="vinyl-center-label">
+                <span class="vinyl-label-icon">❤️</span>
+                <span class="vinyl-label-title">One Less Lonely Girl</span>
+                <span class="vinyl-label-artist">Justin Bieber</span>
+              </div>
+            </div>
+            <div class="vinyl-arm" id="vinylArm"></div>
+          </div>
+        </div>
+
+        <div class="song-content-info">
+          <div class="song-badge">Dedicada Con Todo Mi Amor 🌹</div>
+          <h3 class="song-track-heading">Justin Bieber — One Less Lonely Girl</h3>
+          
+          <div class="lyrics-card">
+            <div class="lyric-bubble english">
+              <span class="lyric-quote-mark">“</span>
+              <p>There's gonna be one less lonely girl... I'm gonna put you first, I'll show you what you're worth.</p>
+            </div>
+            <div class="lyric-bubble spanish">
+              <span class="lyric-translation-tag">En español para ti ❤️:</span>
+              <p>Habrá una chica solitaria menos en el mundo... Porque tú eres mi prioridad número uno y siempre te haré sentir lo valiosa, maravillosa y amada que eres.</p>
+            </div>
+          </div>
+
+          <p class="song-personal-message">
+            Cada vez que suena esta canción pienso en tu carita, en tu sonrisa y en la inmensa bendición que fue encontrarte el 10 de enero. ¡Te amo con locura!
+          </p>
+
+          <div class="song-action-buttons">
+            <button class="btn-play-dedication" id="btnPlayDedication">
+              <span id="dedicationPlayIcon">▶️</span>
+              <span id="dedicationPlayText">Escuchar Nuestra Canción</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SECCIÓN: Frases Románticas Sorpresa -->
     <section class="section-container surprise-section">
       <div class="section-heading">
@@ -347,6 +538,44 @@
         <button id="newSurpriseBtn" class="btn-secondary">
           <span>Tocar para otro mensajito de amor 💌</span>
         </button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Raspa y Descubre Mi Secreto -->
+    <section class="section-container scratch-section">
+      <div class="section-heading">
+        <span class="tag">Una sorpresa oculta</span>
+        <h2>Raspa y Descubre Mi Secreto</h2>
+        <p>Usa tu dedo o el mouse sobre la tarjeta dorada para descubrir lo que guardo para ti</p>
+      </div>
+
+      <div class="scratch-card-wrapper">
+        <div class="scratch-card-box">
+          <div class="scratch-secret-content" id="scratchSecret">
+            <div class="secret-icon">🔒❤️</div>
+            <span class="secret-badge">Mi Secreto Más Puro</span>
+            <h3>Promesa Incondicional de Amor</h3>
+            <p class="secret-message">
+              "Sin importar los días nublados, los desafíos o el tiempo que pase, siempre tendrás en mí a alguien que cuidará tu corazón, te tomará de la mano con fuerza y te amará con toda el alma. Eres y serás por siempre mi princesa."
+            </p>
+            <div class="secret-signature">
+              <span>Para la niña más linda del mundo ✨</span>
+            </div>
+          </div>
+
+          <!-- Canvas que cubre el secreto -->
+          <canvas id="scratchCanvas" class="scratch-canvas" width="480" height="260"></canvas>
+        </div>
+
+        <div class="scratch-controls">
+          <div class="scratch-instructions">
+            <span class="scratch-hand-icon">✨👆</span>
+            <span id="scratchPromptText">¡Arrastra el dedo o mouse para raspar la lámina!</span>
+          </div>
+          <button class="btn-scratch-reveal" id="btnScratchReveal">
+            <span>✨ Revelar Secreto Ahora</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -397,6 +626,6 @@
 
   <!-- Leaflet Maps JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="script.js?v=2.0"></script>
+  <script src="script.js?v=2.2"></script>
 </body>
 </html>

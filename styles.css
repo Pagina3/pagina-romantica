@@ -1507,3 +1507,807 @@ body {
     padding: 3px 6px;
   }
 }
+
+/* ==========================================================
+   11. SECCIÓN: BOLETO AL INFINITO (BOARDING PASS ROMÁNTICO)
+   ========================================================== */
+.ticket-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.love-ticket {
+  display: flex;
+  background: var(--pure-white);
+  border-radius: 24px;
+  box-shadow: 0 16px 45px rgba(217, 4, 41, 0.16);
+  border: 2px solid rgba(239, 35, 60, 0.35);
+  max-width: 820px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.love-ticket:hover {
+  box-shadow: 0 22px 55px rgba(217, 4, 41, 0.25);
+  border-color: var(--ruby-red);
+}
+
+.ticket-left {
+  flex: 1;
+  padding: 30px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.ticket-header-small {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px dashed rgba(239, 35, 60, 0.25);
+  padding-bottom: 12px;
+}
+
+.ticket-airline {
+  font-weight: 700;
+  font-size: 0.86rem;
+  letter-spacing: 1.5px;
+  color: var(--primary-red);
+}
+
+.ticket-class {
+  background: linear-gradient(135deg, #ffe5ec 0%, #ffccd5 100%);
+  color: var(--deep-red);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.ticket-cities {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.city-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.city-code {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-red);
+  letter-spacing: 1px;
+  line-height: 1.1;
+  font-family: 'Playfair Display', serif;
+}
+
+.city-name {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.flight-icon {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  margin: 0 20px;
+}
+
+.flight-line {
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--ruby-red), var(--ruby-red) 6px, transparent 6px, transparent 12px);
+}
+
+.plane-heart {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--pure-white);
+  padding: 4px 8px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  animation: planeFloat 3s ease-in-out infinite;
+}
+
+@keyframes planeFloat {
+  0%, 100% { transform: translate(-50%, 0) scale(1); }
+  50% { transform: translate(-50%, -4px) scale(1.08); }
+}
+
+.ticket-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  background: #fff8f9;
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(239, 35, 60, 0.12);
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.detail-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.detail-val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Divisor Perforado con muescas */
+.ticket-divider {
+  width: 28px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ticket-divider .notch {
+  width: 28px;
+  height: 28px;
+  background: #ffe5ec;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+}
+
+.ticket-divider .notch-top {
+  top: -14px;
+  border-bottom: 2px solid rgba(239, 35, 60, 0.3);
+}
+
+.ticket-divider .notch-bottom {
+  bottom: -14px;
+  border-top: 2px solid rgba(239, 35, 60, 0.3);
+}
+
+.ticket-divider .dotted-line {
+  height: 100%;
+  width: 0;
+  border-left: 2px dashed rgba(239, 35, 60, 0.3);
+}
+
+.ticket-right {
+  width: 240px;
+  background: linear-gradient(180deg, #fff5f7 0%, #fff 100%);
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+}
+
+.ticket-badge-right {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  background: var(--ruby-red);
+  color: var(--pure-white);
+  padding: 4px 14px;
+  border-radius: 20px;
+}
+
+.barcode {
+  display: flex;
+  gap: 3px;
+  height: 48px;
+  align-items: center;
+  opacity: 0.85;
+}
+
+.barcode span {
+  display: inline-block;
+  height: 100%;
+  background: var(--text-dark);
+  border-radius: 1px;
+}
+
+.barcode span:nth-child(odd) { width: 2px; }
+.barcode span:nth-child(even) { width: 4px; }
+.barcode span:nth-child(3n) { width: 6px; }
+.barcode span:nth-child(4n) { width: 1px; }
+
+.btn-stamp-ticket {
+  background: linear-gradient(135deg, var(--ruby-red) 0%, var(--primary-red) 100%);
+  color: var(--pure-white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(217, 4, 41, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.btn-stamp-ticket:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(217, 4, 41, 0.45);
+}
+
+.btn-stamp-ticket.stamped {
+  background: #2a9d8f;
+  pointer-events: none;
+}
+
+.ticket-valid-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-14deg) scale(0);
+  border: 3px solid #d90429;
+  color: #d90429;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 14px rgba(217, 4, 41, 0.25);
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+  z-index: 5;
+}
+
+.ticket-valid-seal.show {
+  transform: translate(-50%, -50%) rotate(-14deg) scale(1);
+  opacity: 1;
+}
+
+/* ==========================================================
+   12. SECCIÓN: NUESTRAS PROMESAS (TARJETAS 3D FLIP)
+   ========================================================== */
+.flip-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.flip-card {
+  background-color: transparent;
+  height: 270px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: 20px;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(217, 4, 41, 0.12);
+}
+
+.flip-card-front {
+  background: var(--pure-white);
+  border: 2px solid rgba(239, 35, 60, 0.22);
+}
+
+.flip-card-front .flip-icon {
+  font-size: 2.8rem;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 8px rgba(217, 4, 41, 0.15));
+}
+
+.flip-card-front h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  color: var(--primary-red);
+  margin-bottom: 12px;
+}
+
+.flip-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: #fff0f3;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.flip-card:hover .flip-hint {
+  background: var(--ruby-red);
+  color: var(--pure-white);
+}
+
+.flip-card-back {
+  background: linear-gradient(145deg, #ef233c 0%, #d90429 50%, #800f2f 100%);
+  color: var(--pure-white);
+  transform: rotateY(180deg);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 16px 40px rgba(217, 4, 41, 0.35);
+}
+
+.flip-back-heart {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  animation: heartBeat 2s infinite;
+}
+
+.flip-card-back p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+/* ==========================================================
+   13. SECCIÓN: CANCIÓN DEDICADA (VINILO ROMÁNTICO)
+   ========================================================== */
+.song-card {
+  background: var(--pure-white);
+  border-radius: 28px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  box-shadow: 0 18px 45px rgba(217, 4, 41, 0.15);
+  border: 2px solid rgba(239, 35, 60, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.song-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 117, 143, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.vinyl-visual-container {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.vinyl-disc-wrapper {
+  position: relative;
+  width: 230px;
+  height: 230px;
+}
+
+.vinyl-disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2a2a30 0%, #151518 70%, #0d0d10 100%);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+
+.vinyl-disc.spinning {
+  animation: vinylSpin 7s linear infinite;
+}
+
+@keyframes vinylSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.vinyl-groove {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.groove-1 { width: 190px; height: 190px; }
+.groove-2 { width: 150px; height: 150px; }
+.groove-3 { width: 115px; height: 115px; }
+
+.vinyl-center-label {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ruby-red) 0%, var(--deep-red) 100%);
+  border: 4px solid #fff;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4px;
+  color: var(--pure-white);
+  z-index: 2;
+}
+
+.vinyl-label-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.vinyl-label-title {
+  font-size: 0.52rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.vinyl-label-artist {
+  font-size: 0.46rem;
+  opacity: 0.9;
+}
+
+.vinyl-arm {
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  width: 80px;
+  height: 90px;
+  border-top: 4px solid #b7094c;
+  border-right: 4px solid #b7094c;
+  border-top-right-radius: 20px;
+  transform: rotate(20deg);
+  transform-origin: top right;
+  transition: transform 0.5s ease;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.vinyl-disc.spinning ~ .vinyl-arm {
+  transform: rotate(38deg);
+}
+
+.song-content-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.song-badge {
+  align-self: flex-start;
+  background: #fff0f3;
+  color: var(--primary-red);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid rgba(239, 35, 60, 0.2);
+}
+
+.song-track-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.85rem;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.lyrics-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff8f9;
+  border-radius: 18px;
+  padding: 18px 22px;
+  border-left: 4px solid var(--ruby-red);
+}
+
+.lyric-bubble.english {
+  display: flex;
+  gap: 8px;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--primary-red);
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+}
+
+.lyric-quote-mark {
+  font-size: 1.8rem;
+  line-height: 0.9;
+  color: var(--blush-pink);
+}
+
+.lyric-bubble.spanish {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.lyric-translation-tag {
+  font-weight: 700;
+  color: var(--deep-red);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.song-personal-message {
+  font-size: 0.96rem;
+  color: var(--text-dark);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.btn-play-dedication {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--ruby-red) 0%, var(--primary-red) 100%);
+  color: var(--pure-white);
+  border: none;
+  padding: 13px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(217, 4, 41, 0.32);
+  transition: var(--transition);
+}
+
+.btn-play-dedication:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(217, 4, 41, 0.45);
+}
+
+/* ==========================================================
+   14. SECCIÓN: RASPA Y DESCUBRE MI SECRETO (CANVAS INTERACTIVO)
+   ========================================================== */
+.scratch-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.scratch-card-box {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  min-height: 270px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 45px rgba(217, 4, 41, 0.2);
+  border: 3px solid rgba(239, 35, 60, 0.35);
+  background: var(--pure-white);
+}
+
+.scratch-secret-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #fff5f7 0%, #ffffff 100%);
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.secret-icon {
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+  animation: heartBeat 2s infinite;
+}
+
+.secret-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--primary-red);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.scratch-secret-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.secret-message {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-style: italic;
+  max-width: 440px;
+  margin-bottom: 12px;
+}
+
+.secret-signature {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ruby-red);
+}
+
+.scratch-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  z-index: 3;
+  touch-action: none;
+}
+
+.scratch-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 520px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.scratch-instructions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.scratch-hand-icon {
+  font-size: 1.3rem;
+  animation: bounceHint 2s infinite;
+}
+
+@keyframes bounceHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.btn-scratch-reveal {
+  background: var(--pure-white);
+  color: var(--primary-red);
+  border: 2px solid var(--ruby-red);
+  padding: 9px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-scratch-reveal:hover {
+  background: var(--ruby-red);
+  color: var(--pure-white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(217, 4, 41, 0.3);
+}
+
+/* ==========================================================
+   RESPONSIVIDAD ADICIONAL (Ticket, Vinilo, Scratch)
+   ========================================================== */
+@media (max-width: 768px) {
+  .love-ticket {
+    flex-direction: column;
+  }
+  .ticket-left {
+    padding: 24px 20px;
+  }
+  .ticket-cities {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .flight-icon {
+    margin: 8px 0;
+    width: 100%;
+  }
+  .city-box {
+    align-items: center;
+  }
+  .ticket-details-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .ticket-divider {
+    width: 100%;
+    height: 28px;
+  }
+  .ticket-divider .notch-top {
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .ticket-divider .notch-bottom {
+    right: -14px;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .ticket-divider .dotted-line {
+    width: 100%;
+    height: 0;
+    border-top: 2px dashed rgba(239, 35, 60, 0.3);
+    border-left: none;
+  }
+  .ticket-right {
+    width: 100%;
+    padding: 20px;
+    border-top: 1px dashed rgba(239, 35, 60, 0.25);
+  }
+  .song-card {
+    flex-direction: column;
+    padding: 26px 20px;
+    text-align: center;
+    gap: 26px;
+  }
+  .song-badge, .btn-play-dedication {
+    align-self: center;
+  }
+  .lyrics-card {
+    text-align: left;
+  }
+  .vinyl-arm {
+    display: none;
+  }
+  .scratch-controls {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
