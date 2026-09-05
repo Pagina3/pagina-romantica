@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModalAndPromises();
   initRomanticMusic();
   initClickHearts();
-  registerServiceWorker();
+  cleanServiceWorkerCache();
 });
 
 /* ==========================================================
@@ -524,12 +524,17 @@ function burstHeartsAtElement(element, count = 15) {
   }
 }
 
-function registerServiceWorker() {
+function cleanServiceWorkerCache() {
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then((reg) => console.log('ServiceWorker registrado:', reg.scope))
-        .catch((err) => console.warn('Error en ServiceWorker:', err));
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+  if ('caches' in window) {
+    caches.keys().then((keys) => {
+      keys.forEach((key) => caches.delete(key));
     });
   }
 }
