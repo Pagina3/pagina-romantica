@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeartCanvas();
   initEnvelope();
   initLoveCounter();
+  initFirstDateMap();
   initLoveMeter();
   initSurpriseQuotes();
   initModalAndPromises();
@@ -459,4 +460,52 @@ function registerServiceWorker() {
         .catch((err) => console.warn('Error en ServiceWorker:', err));
     });
   }
+}
+
+/* ==========================================================
+   10. MAPA DE NUESTRA PRIMERA CITA (MALL SHOPPING QUILLOTA)
+   ========================================================== */
+function initFirstDateMap() {
+  const mapElement = document.getElementById('firstDateMap');
+  if (!mapElement || typeof L === 'undefined') return;
+
+  // Coordenadas exactas de Mall Shopping Center Quillota: -32.8973898, -71.2440898
+  const mallCoords = [-32.8973898, -71.2440898];
+
+  const map = L.map('firstDateMap', {
+    center: mallCoords,
+    zoom: 16,
+    scrollWheelZoom: false // Evita atrapar el desplazamiento vertical en móviles
+  });
+
+  // Capa base de mapas OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+  }).addTo(map);
+
+  // Marcador en forma de corazón animado
+  const heartIcon = L.divIcon({
+    className: 'custom-heart-pin',
+    html: `
+      <div class="heart-pin-wrapper" title="Nuestra Primera Cita ❤️">
+        <div class="heart-pin-pulse"></div>
+        <div class="heart-pin-body">❤️</div>
+      </div>
+    `,
+    iconSize: [48, 48],
+    iconAnchor: [24, 24],
+    popupAnchor: [0, -26]
+  });
+
+  const marker = L.marker(mallCoords, { icon: heartIcon }).addTo(map);
+
+  // Popup con mensaje romántico
+  marker.bindPopup(`
+    <div class="map-popup-card">
+      <h4>Mall Shopping Quillota</h4>
+      <p>Nuestra Primera Cita ❤️</p>
+      <span class="popup-badge">Donde comenzó nuestra historia ✨</span>
+    </div>
+  `).openPopup();
 }

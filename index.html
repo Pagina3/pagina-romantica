@@ -19,6 +19,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" href="icon-192.png">
 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -141,6 +142,42 @@
       </div>
 
       <p class="counter-footer-text">...y esto apenas es el comienzo de nuestra eternidad juntos ✨</p>
+    </section>
+
+    <!-- SECCIÓN: Mapa de Nuestra Primera Cita -->
+    <section class="section-container map-section" id="primera-cita">
+      <div class="section-heading">
+        <span class="tag">Un rincón inolvidable</span>
+        <h2>Nuestra Primera Cita</h2>
+        <p>El lugar donde nuestras miradas se cruzaron y comenzó nuestra hermosa historia de amor</p>
+      </div>
+
+      <div class="map-card-container">
+        <div class="map-card">
+          <div class="map-card-header">
+            <div class="map-location-badge">
+              <span class="location-icon">📍</span>
+              <div>
+                <h3>Mall Shopping Quillota</h3>
+                <p>El punto de partida de nuestro amor ❤️</p>
+              </div>
+            </div>
+            <div class="map-date-tag">Nuestra Cita Especial ✨</div>
+          </div>
+
+          <div id="firstDateMap" class="first-date-map"></div>
+
+          <div class="map-card-footer">
+            <div class="map-quote">
+              <span class="quote-heart">💖</span>
+              <p>Entre tantos lugares en este mundo, el destino nos unió en el Mall Shopping Quillota. ¡Ese día nunca se me va a olvidar!</p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=-32.8973898,-71.2440898" target="_blank" rel="noopener noreferrer" class="btn-map-directions">
+              <span>Ver en Google Maps 🗺️</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- SECCIÓN: Razones por las que te Amo -->
@@ -338,6 +375,8 @@
     </p>
   </footer>
 
+  <!-- Leaflet Maps JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="script.js"></script>
 </body>
 </html>

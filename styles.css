@@ -1126,9 +1126,239 @@ body {
 }
 
 /* ==========================================================
+   SECCIÓN: MAPA DE NUESTRA PRIMERA CITA
+   ========================================================== */
+.map-card-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.map-card {
+  background: var(--pure-white);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: var(--shadow-romantic);
+  border: 2px solid rgba(239, 35, 60, 0.2);
+  transition: var(--transition);
+}
+
+.map-card:hover {
+  box-shadow: 0 20px 45px rgba(217, 4, 41, 0.25);
+  border-color: rgba(239, 35, 60, 0.4);
+}
+
+.map-card-header {
+  padding: 22px 28px;
+  background: linear-gradient(135deg, #fff0f3 0%, #ffffff 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(239, 35, 60, 0.15);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.map-location-badge {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.location-icon {
+  font-size: 2.2rem;
+  animation: bounceDown 2s infinite;
+}
+
+.map-location-badge h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--primary-red);
+  margin-bottom: 2px;
+}
+
+.map-location-badge p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.map-date-tag {
+  background: var(--primary-red);
+  color: var(--pure-white);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(217, 4, 41, 0.25);
+}
+
+.first-date-map {
+  width: 100%;
+  height: 380px;
+  z-index: 5;
+  background: #fdf2f4;
+}
+
+/* Marcador de Corazón Pulsante en el Mapa */
+.custom-heart-pin {
+  background: transparent !important;
+  border: none !important;
+}
+
+.heart-pin-wrapper {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.heart-pin-pulse {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(239, 35, 60, 0.45);
+  animation: mapPulse 1.8s infinite ease-out;
+}
+
+.heart-pin-body {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  background: var(--primary-red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  color: var(--pure-white);
+  box-shadow: 0 4px 15px rgba(128, 15, 47, 0.5);
+  border: 2.5px solid var(--pure-white);
+  transition: transform 0.2s;
+}
+
+.heart-pin-wrapper:hover .heart-pin-body {
+  transform: scale(1.18);
+}
+
+@keyframes mapPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Popup de Leaflet Romántico */
+.leaflet-popup-content-wrapper {
+  background: var(--pure-white) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(128, 15, 47, 0.25) !important;
+  border: 1px solid rgba(239, 35, 60, 0.25) !important;
+  padding: 6px !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--pure-white) !important;
+}
+
+.map-popup-card {
+  text-align: center;
+  padding: 8px 12px;
+}
+
+.map-popup-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--primary-red);
+  margin-bottom: 4px;
+}
+
+.map-popup-card p {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.popup-badge {
+  display: inline-block;
+  background: #fff0f3;
+  color: var(--primary-red);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(239, 35, 60, 0.25);
+}
+
+.map-card-footer {
+  padding: 22px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-top: 1px solid rgba(239, 35, 60, 0.12);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.map-quote {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 500px;
+}
+
+.quote-heart {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  animation: heartBeat 2s infinite;
+}
+
+.map-quote p {
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.btn-map-directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--ruby-red) 0%, var(--primary-red) 100%);
+  color: var(--pure-white);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(217, 4, 41, 0.3);
+  transition: var(--transition);
+}
+
+.btn-map-directions:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(217, 4, 41, 0.45);
+  color: var(--pure-white);
+}
+
+/* ==========================================================
    RESPONSIVIDAD (Móviles y Tablets)
    ========================================================== */
 @media (max-width: 768px) {
+  .first-date-map {
+    height: 300px;
+  }
+  .map-card-header, .map-card-footer {
+    padding: 16px 18px;
+  }
+  .map-quote {
+    max-width: 100%;
+  }
+  .btn-map-directions {
+    width: 100%;
+    justify-content: center;
+  }
   .hero-title {
     font-size: 2.4rem;
   }
