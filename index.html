@@ -10,6 +10,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
   
+  <!-- Soporte para PWA y App de iPhone (iOS) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#d90429">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mi Amor ❤️">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="icon-192.png">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,14 +26,20 @@
   <!-- Canvas de Corazones Flotantes en Fondo -->
   <canvas id="heartCanvas"></canvas>
 
-  <!-- Botón de Música Flotante -->
-  <button id="musicToggle" class="music-btn" title="Activar/Pausar música romántica">
-    <span class="music-icon" id="musicIcon">🎵</span>
-    <span class="music-text">Melodía Romántica</span>
-    <div class="sound-waves" id="soundWaves">
-      <span></span><span></span><span></span>
-    </div>
-  </button>
+  <!-- Botones Flotantes Superiores -->
+  <div class="top-controls">
+    <button id="installAppBtn" class="install-btn" title="Instalar app en iPhone / Celular">
+      <span class="install-icon">📲</span>
+      <span class="install-text">Instalar App</span>
+    </button>
+    <button id="musicToggle" class="music-btn" title="Activar/Pausar música romántica">
+      <span class="music-icon" id="musicIcon">🎵</span>
+      <span class="music-text">Melodía Romántica</span>
+      <div class="sound-waves" id="soundWaves">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+  </div>
 
   <!-- Hero / Portada -->
   <header class="hero-section">
@@ -47,6 +62,9 @@
       <a href="#medidor" class="btn-secondary">
         <span>¿Cuánto te amo? ❤️</span>
       </a>
+      <button id="heroInstallBtn" class="btn-install-hero">
+        <span>📲 Instalar App en tu iPhone</span>
+      </button>
     </div>
 
     <div class="scroll-down-indicator">
@@ -312,6 +330,49 @@
         Haces que cada día de mi vida sea infinitamente más feliz. Gracias por ser mi novia, mi cómplice y mi amor.
       </p>
       <button class="btn-primary" id="closeModalBtn">Te amo con toda mi alma ❤️</button>
+    </div>
+  </div>
+
+  <!-- Modal de Instalación en iPhone / Móvil -->
+  <div class="modal-overlay" id="installModal">
+    <div class="modal-card install-modal-card">
+      <div class="install-header">
+        <img src="apple-touch-icon.png" alt="Icono de la app" class="app-install-icon">
+        <h3>Instala Nuestra App en tu iPhone 📲</h3>
+        <p class="install-subtitle">Para que tengas nuestro amor siempre a un toque en tu pantalla de inicio</p>
+      </div>
+
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="step-num">1</div>
+          <div class="step-desc">
+            <p>En <strong>Safari</strong>, toca el botón <strong>Compartir</strong> en la barra inferior:</p>
+            <span class="step-icon-badge">⎋ Compartir</span>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-num">2</div>
+          <div class="step-desc">
+            <p>Baja en el menú y presiona <strong>"Agregar a inicio"</strong>:</p>
+            <span class="step-icon-badge">➕ Agregar a inicio</span>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-num">3</div>
+          <div class="step-desc">
+            <p>Toca <strong>"Agregar"</strong> arriba a la derecha y ¡listo!</p>
+            <span class="step-icon-badge">✨ Icono listo en tu pantalla</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="install-tip-box">
+        💡 <em>Se abrirá a pantalla completa sin barras de navegador, como una app real.</em>
+      </div>
+
+      <button class="btn-primary btn-close-install" id="closeInstallModalBtn">¡Entendido, voy a instalarla! ❤️</button>
     </div>
   </div>
 

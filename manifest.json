@@ -1,0 +1,30 @@
+{
+  "name": "Para Mi Amor ❤️ - Te Amo",
+  "short_name": "Mi Amor ❤️",
+  "description": "Una aplicación especial y romántica llena de amor creada solo para ti.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff0f3",
+  "theme_color": "#d90429",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

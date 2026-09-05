@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initModalAndPromises();
   initRomanticMusic();
   initClickHearts();
+  initAppInstall();
+  registerServiceWorker();
 });
 
 /* ==========================================================
@@ -447,5 +449,68 @@ function burstHeartsAtElement(element, count = 15) {
         centerY + (Math.random() - 0.5) * 30
       );
     }, i * 35);
+  }
+}
+
+/* ==========================================================
+   9. INSTALACIÓN DE APP EN IPHONE / CELULAR (PWA)
+   ========================================================== */
+function initAppInstall() {
+  const installAppBtn = document.getElementById('installAppBtn');
+  const heroInstallBtn = document.getElementById('heroInstallBtn');
+  const installModal = document.getElementById('installModal');
+  const closeInstallModalBtn = document.getElementById('closeInstallModalBtn');
+
+  let deferredPrompt = null;
+
+  // Detectar soporte para instalación directa (Chrome / Android)
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  function openInstallModal() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('App instalada');
+        }
+        deferredPrompt = null;
+      });
+      return;
+    }
+
+    // Para iPhone (Safari) o navegadores en general, mostrar modal con guía
+    if (installModal) {
+      installModal.classList.add('active');
+    }
+  }
+
+  if (installAppBtn) installAppBtn.addEventListener('click', openInstallModal);
+  if (heroInstallBtn) heroInstallBtn.addEventListener('click', openInstallModal);
+
+  if (closeInstallModalBtn && installModal) {
+    closeInstallModalBtn.addEventListener('click', () => {
+      installModal.classList.remove('active');
+    });
+  }
+
+  if (installModal) {
+    installModal.addEventListener('click', (e) => {
+      if (e.target === installModal) {
+        installModal.classList.remove('active');
+      }
+    });
+  }
+}
+
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then((reg) => console.log('ServiceWorker registrado:', reg.scope))
+        .catch((err) => console.warn('Error en ServiceWorker:', err));
+    });
   }
 }
