@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Mi Amor - Te Quiero Mucho y Más, Te Amo ❤️</title>
+  
+  <!-- Fuentes Elegantes de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Canvas de Corazones Flotantes en Fondo -->
+  <canvas id="heartCanvas"></canvas>
+
+  <!-- Botón de Música Flotante -->
+  <button id="musicToggle" class="music-btn" title="Activar/Pausar música romántica">
+    <span class="music-icon" id="musicIcon">🎵</span>
+    <span class="music-text">Melodía Romántica</span>
+    <div class="sound-waves" id="soundWaves">
+      <span></span><span></span><span></span>
+    </div>
+  </button>
+
+  <!-- Hero / Portada -->
+  <header class="hero-section">
+    <div class="hero-badge">❤️ Para la mujer más hermosa de mi vida ❤️</div>
+    
+    <div class="heart-pulse-container">
+      <div class="heart-main"></div>
+      <div class="heart-echo"></div>
+    </div>
+
+    <h1 class="hero-title">Te quiero mucho... <br><span class="highlight">¡y mucho más, te amo!</span></h1>
+    <p class="hero-subtitle">
+      Dicen que el amor no se puede medir, pero si pudiera medirse, el mío por ti superaría las estrellas.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#carta" class="btn-primary">
+        <span>Abrir mi carta para ti 💌</span>
+      </a>
+      <a href="#medidor" class="btn-secondary">
+        <span>¿Cuánto te amo? ❤️</span>
+      </a>
+    </div>
+
+    <div class="scroll-down-indicator">
+      <span>Desliza para ver más amor</span>
+      <div class="arrow-down">↓</div>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- SECCIÓN: Carta Romántica Interactiva -->
+    <section id="carta" class="section-container letter-section">
+      <div class="section-heading">
+        <span class="tag">Un mensaje desde lo profundo de mi corazón</span>
+        <h2>Una Carta Para Ti</h2>
+        <p>Toca el sobre para abrir la carta especial que te escribí</p>
+      </div>
+
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="envelope-back"></div>
+          <div class="envelope-letter" id="letter">
+            <div class="letter-content">
+              <div class="letter-header">
+                <span class="letter-date" id="currentDate">Para ti, mi niña bonita</span>
+                <span class="letter-stamp">💌</span>
+              </div>
+              <h3 class="letter-salutation">Mi amor hermoso,</h3>
+              <p>
+                Quiero que sepas que eres la casualidad más linda y el regalo más perfecto que la vida me ha dado.
+              </p>
+              <p>
+                No hay palabras suficientes en ningún idioma para expresar lo que siento cuando te miro, cuando me sonríes o cuando escucho tu voz. No solo te quiero: te quiero un montón, te quiero mucho más cada segundo que pasa, y te amo con cada latido de mi corazón.
+              </p>
+              <p>
+                Gracias por llenar mis días de alegría, por tus abrazos cálidos que calman todo y por hacerme la persona más afortunada del mundo. Prometo estar siempre a tu lado, cuidarte, apoyarte y recordarte cada día lo increíble y especial que eres.
+              </p>
+              <div class="letter-sign">
+                <p>Siempre tuyo,</p>
+                <div class="signature">Tu novio que te adora ❤️</div>
+              </div>
+            </div>
+          </div>
+          <div class="envelope-front">
+            <div class="flap flap-left"></div>
+            <div class="flap flap-right"></div>
+            <div class="flap flap-bottom"></div>
+            <div class="flap-top" id="envelopeFlap"></div>
+            <div class="wax-seal" id="waxSeal">
+              <span>❤️</span>
+            </div>
+          </div>
+        </div>
+        <p class="envelope-instruction" id="envelopeHint">✨ Haz clic en el sello para abrir la carta ✨</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Contador de Tiempo Juntos -->
+    <section class="section-container timer-section">
+      <div class="section-heading">
+        <span class="tag">Nuestra Historia • Desde el 10 de Enero</span>
+        <h2>Tiempo Enamorándome de Ti</h2>
+        <p>Cada segundo desde aquel 10 de enero es un regalo que guardo en el corazón</p>
+      </div>
+
+      <div class="counter-grid">
+        <div class="counter-card">
+          <span class="counter-number" id="daysCount">0</span>
+          <span class="counter-label">Días</span>
+        </div>
+        <div class="counter-card">
+          <span class="counter-number" id="hoursCount">0</span>
+          <span class="counter-label">Horas</span>
+        </div>
+        <div class="counter-card">
+          <span class="counter-number" id="minutesCount">0</span>
+          <span class="counter-label">Minutos</span>
+        </div>
+        <div class="counter-card">
+          <span class="counter-number" id="secondsCount">0</span>
+          <span class="counter-label">Segundos</span>
+        </div>
+      </div>
+
+      <p class="counter-footer-text">...y esto apenas es el comienzo de nuestra eternidad juntos ✨</p>
+    </section>
+
+    <!-- SECCIÓN: Razones por las que te Amo -->
+    <section class="section-container reasons-section">
+      <div class="section-heading">
+        <span class="tag">Millones de motivos</span>
+        <h2>Razones Por Las Que Te Amo</h2>
+        <p>Toca cada tarjeta para descubrir lo que haces en mi vida</p>
+      </div>
+
+      <div class="reasons-grid">
+        <div class="reason-card">
+          <div class="reason-icon">✨</div>
+          <h3>Tu Sonrisa</h3>
+          <p>Tienes la sonrisa más preciosa del mundo. Es capaz de iluminar hasta el día más gris y me hace sonreír al instante.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">🫂</div>
+          <h3>Tus Abrazos</h3>
+          <p>Tus abrazos son mi refugio favorito. Es el único lugar donde siento una paz absoluta y me siento en casa.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">💖</div>
+          <h3>Tu Forma de Ser</h3>
+          <p>Amo tu ternura, tu inteligencia, tu bondad y la manera en que te preocupas por las personas que quieres.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">🌟</div>
+          <h3>Nuestras Risas</h3>
+          <p>Amo todas nuestras pláticas infinitas, nuestras bromas internas y los momentos en que no paramos de reír juntos.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">🌹</div>
+          <h3>Tu Apoyo Incondicional</h3>
+          <p>Porque crees en mí incluso cuando yo dudo, y me impulsas a ser una mejor persona cada día.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">♾️</div>
+          <h3>Simplemente Eres Tú</h3>
+          <p>Te amo exactamente como eres, con cada detalle, cada gesto y cada mirada. Eres perfecta para mí.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Medidor de Amor Infinito -->
+    <section id="medidor" class="section-container love-meter-section">
+      <div class="section-heading">
+        <span class="tag">Comprobación científica</span>
+        <h2>El Medidor de Mi Amor</h2>
+        <p>Presiona el botón tantas veces como quieras para calcular cuánto te amo</p>
+      </div>
+
+      <div class="meter-card">
+        <div class="meter-bar-container">
+          <div class="meter-bar" id="meterBar">
+            <span class="meter-glow"></span>
+          </div>
+        </div>
+        <div class="meter-status">
+          <span class="meter-value" id="meterValue">100%</span>
+          <p class="meter-comment" id="meterComment">Amor garantizado y certificado ❤️</p>
+        </div>
+
+        <button id="boostLoveBtn" class="btn-boost">
+          <span class="btn-sparkle">✨</span>
+          <span>¡Aumentar Amor! (Presióname)</span>
+          <span class="btn-heart">❤️</span>
+        </button>
+
+        <p class="meter-hint">Advertencia: ¡Presionar demasiado puede sobrecalentar el amor! 💥</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Galería de Recuerdos Estilo Polaroid -->
+    <section class="section-container gallery-section">
+      <div class="section-heading">
+        <span class="tag">Nuestros Momentos</span>
+        <h2>Galería de Amor</h2>
+        <p>Momentos mágicos que guardo con cariño en mi alma</p>
+      </div>
+
+      <div class="polaroid-grid">
+        <div class="polaroid-item rotate-left">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <div class="romantic-illu illu-1">
+              <span>🌹</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">Donde comenzó nuestra historia ❤️</div>
+        </div>
+
+        <div class="polaroid-item rotate-right">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <div class="romantic-illu illu-2">
+              <span>👩‍❤️‍👨</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">Tu risa, mi melodía favorita ✨</div>
+        </div>
+
+        <div class="polaroid-item rotate-center">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <div class="romantic-illu illu-3">
+              <span>🌅</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">Cualquier atardecer a tu lado es mágico</div>
+        </div>
+
+        <div class="polaroid-item rotate-left-alt">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <div class="romantic-illu illu-4">
+              <span>💍</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">Un amor para toda la vida ♾️</div>
+        </div>
+      </div>
+
+      <div class="polaroid-tip">
+        💡 <em>Nota: Puedes agregar fácilmente tus fotos reales juntos reemplazando las imágenes en el código.</em>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Frases Románticas Sorpresa -->
+    <section class="section-container surprise-section">
+      <div class="section-heading">
+        <span class="tag">Para cuando me extrañes</span>
+        <h2>Un Pensamiento Para Hoy</h2>
+        <p>Cada vez que toques el botón aparecerá un mensajito nuevo para ti</p>
+      </div>
+
+      <div class="surprise-card">
+        <div class="quote-mark">“</div>
+        <p class="surprise-text" id="surpriseText">
+          Te amo no solo por lo que eres, sino por lo que soy cuando estoy contigo.
+        </p>
+        <button id="newSurpriseBtn" class="btn-secondary">
+          <span>Tocar para otro mensajito de amor 💌</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Pregunta Final Romántica -->
+    <section class="section-container promise-section">
+      <div class="promise-card">
+        <div class="crown-icon">👑</div>
+        <h2>¿Sabías que eres la reina de mi corazón?</h2>
+        <p>No cambiaría ni un solo minuto de los que he compartido a tu lado.</p>
+        
+        <div class="final-question">
+          <p class="question-text">¿Me prometes que siempre estaremos juntitos? 💕</p>
+          <div class="answer-buttons">
+            <button class="btn-yes" id="btnYes">¡Sí, por siempre y para siempre! 💖</button>
+            <button class="btn-yes-also" id="btnYesAlso">¡Obvio que sí, te amo! 🥰</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal Romántico de Celebración -->
+  <div class="modal-overlay" id="loveModal">
+    <div class="modal-card">
+      <div class="modal-heart">💖</div>
+      <h2 id="modalTitle">¡Sabía que dirías que sí! 🥰</h2>
+      <p id="modalText">
+        Haces que cada día de mi vida sea infinitamente más feliz. Gracias por ser mi novia, mi cómplice y mi amor.
+      </p>
+      <button class="btn-primary" id="closeModalBtn">Te amo con toda mi alma ❤️</button>
+    </div>
+  </div>
+
+  <!-- Pie de Página -->
+  <footer class="romantic-footer">
+    <div class="footer-heart-divider">
+      <span>❤️</span><span>🤍</span><span>❤️</span>
+    </div>
+    <p class="footer-text">
+      Hecho con todo mi amor, alma y corazón especialmente para ti.
+    </p>
+    <p class="footer-subtext">
+      Te quiero mucho y más... ¡y te amo infinitamente! ✨
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
