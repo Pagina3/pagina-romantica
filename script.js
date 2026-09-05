@@ -308,35 +308,51 @@ function initModalAndPromises() {
 }
 
 /* ==========================================================
-   7. MÚSICA ROMÁNTICA SINTETIZADA (WEB AUDIO API)
+   7. REPRODUCTOR DE MÚSICA ROMÁNTICA MULTICANCIONES
    ========================================================== */
-// Crea una melodía suave tipo caja de música de ensueño sin necesidad de archivos MP3 externos.
 function initRomanticMusic() {
-  const musicBtn = document.getElementById('musicToggle');
-  const musicIcon = document.getElementById('musicIcon');
+  const musicWidget = document.getElementById('musicPlayerWidget');
+  const musicToggle = document.getElementById('musicToggle');
+  const playIcon = document.getElementById('playIcon');
+  const currentTrackTitle = document.getElementById('currentTrackTitle');
+  const nextTrackBtn = document.getElementById('nextTrackBtn');
+  const trackChips = document.querySelectorAll('.track-chip');
+  const audioElement = document.getElementById('audioElement');
 
-  let audioCtx = null;
-  let isPlaying = false;
-  let timerId = null;
-
-  // Secuencia de notas suaves (arpegio de vals romántico)
-  // C4, E4, G4, B4, C5, G4, A4, E5, D5, B4, etc.
-  const melody = [
-    { note: 261.63, dur: 0.5 }, // C4
-    { note: 329.63, dur: 0.5 }, // E4
-    { note: 392.00, dur: 0.5 }, // G4
-    { note: 523.25, dur: 0.8 }, // C5
-    { note: 493.88, dur: 0.5 }, // B4
-    { note: 392.00, dur: 0.5 }, // G4
-    { note: 440.00, dur: 0.6 }, // A4
-    { note: 523.25, dur: 0.5 }, // C5
-    { note: 659.25, dur: 0.9 }, // E5
-    { note: 587.33, dur: 0.5 }, // D5
-    { note: 493.88, dur: 0.5 }, // B4
-    { note: 392.00, dur: 0.7 }  // G4
+  const tracks = [
+    {
+      id: 0,
+      title: "Justin Bieber - One Less Lonely Girl",
+      type: "audio"
+    },
+    {
+      id: 1,
+      title: "Melodía Dulce (Caja de Música)",
+      type: "synth"
+    }
   ];
 
-  let currentNoteIdx = 0;
+  let currentTrackIdx = 0;
+  let isPlaying = false;
+
+  // Variables para la melodía sintetizada
+  let audioCtx = null;
+  let synthTimerId = null;
+  const melody = [
+    { note: 261.63, dur: 0.5 },
+    { note: 329.63, dur: 0.5 },
+    { note: 392.00, dur: 0.5 },
+    { note: 523.25, dur: 0.8 },
+    { note: 493.88, dur: 0.5 },
+    { note: 392.00, dur: 0.5 },
+    { note: 440.00, dur: 0.6 },
+    { note: 523.25, dur: 0.5 },
+    { note: 659.25, dur: 0.9 },
+    { note: 587.33, dur: 0.5 },
+    { note: 493.88, dur: 0.5 },
+    { note: 392.00, dur: 0.7 }
+  ];
+  let synthNoteIdx = 0;
 
   function playTone(freq, duration) {
     if (!audioCtx) return;
@@ -344,11 +360,9 @@ function initRomanticMusic() {
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
-      // Sonido dulce estilo campana / caja de música (sine con harmonics suaves)
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-      // Envolvente de volumen suave
       gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.05);
       gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration * 1.4);
@@ -363,41 +377,99 @@ function initRomanticMusic() {
     }
   }
 
-  function scheduleNextNote() {
-    if (!isPlaying) return;
-    const step = melody[currentNoteIdx];
+  function scheduleNextSynthNote() {
+    if (!isPlaying || tracks[currentTrackIdx].type !== 'synth') return;
+    const step = melody[synthNoteIdx];
     playTone(step.note, step.dur);
-
-    currentNoteIdx = (currentNoteIdx + 1) % melody.length;
-    timerId = setTimeout(scheduleNextNote, step.dur * 750);
+    synthNoteIdx = (synthNoteIdx + 1) % melody.length;
+    synthTimerId = setTimeout(scheduleNextSynthNote, step.dur * 750);
   }
 
-  function toggleMusic() {
-    if (!audioCtx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContext();
+  function playCurrentTrack() {
+    const track = tracks[currentTrackIdx];
+    isPlaying = true;
+
+    if (track.type === 'audio' && audioElement) {
+      clearTimeout(synthTimerId);
+      audioElement.play().catch(err => {
+        console.warn('Error al reproducir audio:', err);
+      });
+    } else if (track.type === 'synth') {
+      if (audioElement) audioElement.pause();
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      scheduleNextSynthNote();
     }
 
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
+    if (musicWidget) musicWidget.classList.add('playing');
+    if (playIcon) playIcon.textContent = '⏸';
+  }
 
-    isPlaying = !isPlaying;
+  function pauseCurrentTrack() {
+    isPlaying = false;
+    if (audioElement) audioElement.pause();
+    clearTimeout(synthTimerId);
 
+    if (musicWidget) musicWidget.classList.remove('playing');
+    if (playIcon) playIcon.textContent = '▶';
+  }
+
+  function togglePlay() {
     if (isPlaying) {
-      musicBtn.classList.add('playing');
-      musicIcon.textContent = '💖';
-      scheduleNextNote();
+      pauseCurrentTrack();
     } else {
-      musicBtn.classList.remove('playing');
-      musicIcon.textContent = '🎵';
-      clearTimeout(timerId);
+      playCurrentTrack();
     }
   }
 
-  if (musicBtn) {
-    musicBtn.addEventListener('click', toggleMusic);
+  function selectTrack(idx) {
+    if (idx === currentTrackIdx && isPlaying) return;
+
+    const wasPlaying = isPlaying;
+    pauseCurrentTrack();
+
+    currentTrackIdx = idx;
+    const track = tracks[currentTrackIdx];
+
+    if (currentTrackTitle) currentTrackTitle.textContent = track.title;
+
+    trackChips.forEach((chip, i) => {
+      chip.classList.toggle('active', i === currentTrackIdx);
+    });
+
+    if (wasPlaying) {
+      playCurrentTrack();
+    }
   }
+
+  if (musicToggle) {
+    musicToggle.addEventListener('click', togglePlay);
+  }
+
+  if (nextTrackBtn) {
+    nextTrackBtn.addEventListener('click', () => {
+      const nextIdx = (currentTrackIdx + 1) % tracks.length;
+      selectTrack(nextIdx);
+      if (!isPlaying) {
+        playCurrentTrack();
+      }
+    });
+  }
+
+  trackChips.forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      const targetIdx = Number(e.currentTarget.dataset.track);
+      selectTrack(targetIdx);
+      if (!isPlaying) {
+        playCurrentTrack();
+      }
+    });
+  });
 }
 
 /* ==========================================================

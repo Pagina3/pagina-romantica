@@ -27,14 +27,32 @@
   <!-- Canvas de Corazones Flotantes en Fondo -->
   <canvas id="heartCanvas"></canvas>
 
-  <!-- Botón de Música Flotante -->
-  <button id="musicToggle" class="music-btn" title="Activar/Pausar música romántica">
-    <span class="music-icon" id="musicIcon">🎵</span>
-    <span class="music-text">Melodía Romántica</span>
-    <div class="sound-waves" id="soundWaves">
-      <span></span><span></span><span></span>
+  <!-- Reproductor Romántico Flotante -->
+  <div class="music-player-widget" id="musicPlayerWidget">
+    <audio id="audioElement" src="one-less-lonely-girl.mp3" preload="auto" loop></audio>
+    
+    <div class="music-player-main">
+      <button id="musicToggle" class="music-play-btn" title="Reproducir / Pausar">
+        <span id="playIcon">▶</span>
+      </button>
+
+      <div class="music-info">
+        <span class="music-title" id="currentTrackTitle">Justin Bieber - One Less Lonely Girl</span>
+        <div class="sound-waves" id="soundWaves">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <button id="nextTrackBtn" class="music-next-btn" title="Cambiar a la otra canción">
+        <span>⏭️</span>
+      </button>
     </div>
-  </button>
+
+    <div class="music-track-selector">
+      <button class="track-chip active" data-track="0">💖 One Less Lonely Girl</button>
+      <button class="track-chip" data-track="1">🎹 Melodía Dulce</button>
+    </div>
+  </div>
 
   <!-- Hero / Portada -->
   <header class="hero-section">
