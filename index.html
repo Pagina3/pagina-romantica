@@ -22,12 +22,18 @@
   <meta http-equiv="Expires" content="0">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <link rel="stylesheet" href="styles.css?v=2.3">
+  <link rel="stylesheet" href="styles.css?v=2.4">
 </head>
 <body>
 
   <!-- Canvas de Corazones Flotantes en Fondo -->
   <canvas id="heartCanvas"></canvas>
+
+  <!-- Botón Flotante: Lluvia de Girasoles -->
+  <button class="floating-sunflower-button" id="floatingSunflowerShowerBtn" title="¡Lanzar Lluvia de Girasoles! 🌻">
+    <span class="btn-sunflower-icon">🌻</span>
+    <span class="btn-sunflower-text">Lluvia de Girasoles</span>
+  </button>
 
   <!-- Reproductor Romántico Flotante -->
   <div class="music-player-widget" id="musicPlayerWidget">
@@ -61,11 +67,13 @@
     <div class="hero-badge">❤️ Para la mujer más hermosa y mi girasol favorito 🌻❤️</div>
     
     <div class="heart-pulse-container">
+      <span class="hero-sunflower-decor left-decor">🌻</span>
       <div class="heart-main"></div>
       <div class="heart-echo"></div>
+      <span class="hero-sunflower-decor right-decor">🌻</span>
     </div>
 
-    <h1 class="hero-title">Te quiero mucho... <br><span class="highlight">¡y mucho más, te amo!</span></h1>
+    <h1 class="hero-title">Te quiero mucho... <br><span class="highlight">¡y mucho más, te amo! 🌻</span></h1>
     <p class="hero-subtitle">
       Dicen que el amor no se puede medir, pero si pudiera medirse, el mío por ti superaría las estrellas.
     </p>
@@ -73,6 +81,9 @@
     <div class="hero-actions">
       <a href="#carta" class="btn-primary">
         <span>Abrir mi carta para ti 💌</span>
+      </a>
+      <a href="#girasoles" class="btn-sunflower-hero">
+        <span>Ver tus girasoles 🌻</span>
       </a>
       <a href="#medidor" class="btn-secondary">
         <span>¿Cuánto te amo? ❤️</span>
@@ -215,7 +226,7 @@
         <div class="love-ticket" id="loveTicket">
           <div class="ticket-left">
             <div class="ticket-header-small">
-              <span class="ticket-airline">✈️ AEROLÍNEAS DEL AMOR</span>
+              <span class="ticket-airline">✈️🌻 AEROLÍNEAS DEL AMOR</span>
               <span class="ticket-class">PRIMERA CLASE VIP</span>
             </div>
             <div class="ticket-cities">
@@ -225,7 +236,7 @@
               </div>
               <div class="flight-icon">
                 <span class="flight-line"></span>
-                <span class="plane-heart">✈️❤️</span>
+                <span class="plane-heart">✈️🌻</span>
               </div>
               <div class="city-box">
                 <span class="city-code">∞-AMOR</span>
@@ -239,7 +250,7 @@
               </div>
               <div class="detail-item">
                 <span class="detail-label">VUELO</span>
-                <span class="detail-val">JB-TEAMO-2026</span>
+                <span class="detail-val">GIRASOL-TEAMO-2026 🌻</span>
               </div>
               <div class="detail-item">
                 <span class="detail-label">ASIENTO</span>
@@ -257,16 +268,16 @@
             <div class="notch notch-bottom"></div>
           </div>
           <div class="ticket-right">
-            <div class="ticket-badge-right">PASAJERA VIP</div>
+            <div class="ticket-badge-right">PASAJERA VIP 🌻</div>
             <div class="barcode">
               <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
             </div>
             <button class="btn-stamp-ticket" id="stampTicketBtn">
-              <span id="stampIcon">❤️</span>
+              <span id="stampIcon">🌻</span>
               <span id="stampText">Validar Boleto</span>
             </button>
             <div class="ticket-valid-seal" id="ticketSeal">
-              <span>SELLADO CON AMOR ETERNO ❤️</span>
+              <span>SELLADO CON AMOR ETERNO ❤️🌻</span>
             </div>
           </div>
         </div>
@@ -388,6 +399,22 @@
               <span class="sunflower-stem"></span>
               <span class="sunflower-label">Para Siempre</span>
             </button>
+
+            <button class="sunflower-item" data-msg="🌻 'Tus Abrazos': El refugio más cálido y seguro de todo el planeta. Me devuelven la vida." data-idx="6">
+              <div class="sunflower-flower">
+                <span class="flower-emoji">🌻</span>
+              </div>
+              <span class="sunflower-stem"></span>
+              <span class="sunflower-label">Tus Abrazos</span>
+            </button>
+
+            <button class="sunflower-item" data-msg="🌻 'Mi Felicidad': Cada instante a tu lado es un tesoro inmenso. Haces mis días luminosos." data-idx="7">
+              <div class="sunflower-flower">
+                <span class="flower-emoji">🌻</span>
+              </div>
+              <span class="sunflower-stem"></span>
+              <span class="sunflower-label">Mi Felicidad</span>
+            </button>
           </div>
 
           <div class="sunflower-revealed-bubble" id="sunflowerRevealedMsg">
@@ -397,9 +424,52 @@
 
           <div class="sunflower-actions">
             <button class="btn-water-sunflowers" id="waterSunflowersBtn">
-              <span>💧 Regar Nuestro Jardín de Amor 🌻</span>
+              <span>💧 Regar Todo el Jardín de Girasoles 🌻</span>
             </button>
           </div>
+        </div>
+
+        <!-- JUEGO ROMÁNTICO: Deshojando el Gran Girasol -->
+        <div class="pluck-game-wrapper">
+          <div class="pluck-header">
+            <span class="pluck-badge">🌻 Mini-Juego Romántico</span>
+            <h3>Deshojando el Girasol de la Suerte</h3>
+            <p>Toca el botón para deshojar un pétalo y descubrir lo que dice nuestro destino...</p>
+          </div>
+
+          <div class="big-sunflower-container">
+            <div class="big-sunflower" id="bigSunflower">
+              <div class="big-sunflower-center">
+                <span class="center-heart">❤️🌻</span>
+                <small id="petalsRemainingText">8 pétalos</small>
+              </div>
+              <div class="sunflower-petal petal-1" data-petal="1"></div>
+              <div class="sunflower-petal petal-2" data-petal="2"></div>
+              <div class="sunflower-petal petal-3" data-petal="3"></div>
+              <div class="sunflower-petal petal-4" data-petal="4"></div>
+              <div class="sunflower-petal petal-5" data-petal="5"></div>
+              <div class="sunflower-petal petal-6" data-petal="6"></div>
+              <div class="sunflower-petal petal-7" data-petal="7"></div>
+              <div class="sunflower-petal petal-8" data-petal="8"></div>
+            </div>
+          </div>
+
+          <div class="pluck-output-card" id="pluckOutputCard">
+            <span class="pluck-result-text" id="pluckResultText">✨ Toca "Deshojar un Pétalo" para comenzar ✨</span>
+          </div>
+
+          <div class="pluck-controls">
+            <button class="btn-pluck" id="btnPluckPetal">
+              <span>🌻 Deshojar un Pétalo</span>
+            </button>
+            <button class="btn-reset-pluck" id="btnResetPluck" style="display: none;">
+              <span>🌱 Florecer de Nuevo</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="sunflower-garland">
+          <span>🌻</span><span>🌻</span><span>🌻</span><span>🌻</span><span>🌻</span><span>🌻</span><span>🌻</span><span>🌻</span><span>🌻</span>
         </div>
       </div>
     </section>
@@ -711,18 +781,18 @@
   <!-- Pie de Página -->
   <footer class="romantic-footer">
     <div class="footer-heart-divider">
-      <span>❤️</span><span>🤍</span><span>❤️</span>
+      <span>🌻</span><span>❤️</span><span>🌻</span><span>🤍</span><span>🌻</span><span>❤️</span><span>🌻</span>
     </div>
     <p class="footer-text">
       Hecho con todo mi amor, alma y corazón especialmente para ti.
     </p>
     <p class="footer-subtext">
-      Te quiero mucho y más... ¡y te amo infinitamente! ✨
+      Te quiero mucho y más... ¡y te amo infinitamente, mi girasol más hermoso! 🌻✨
     </p>
   </footer>
 
   <!-- Leaflet Maps JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="script.js?v=2.3"></script>
+  <script src="script.js?v=2.4"></script>
 </body>
 </html>

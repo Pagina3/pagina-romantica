@@ -2597,4 +2597,291 @@ body {
   filter: drop-shadow(0 4px 8px rgba(255, 183, 3, 0.3));
 }
 
+/* ==========================================================
+   16. MÁS GIRASOLES: BOTÓN FLOTANTE, HERO Y JUEGO DESHOJAR
+   ========================================================== */
+.floating-sunflower-button {
+  position: fixed;
+  bottom: 22px;
+  left: 22px;
+  z-index: 998;
+  background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+  border: 2.5px solid var(--pure-white);
+  border-radius: 50px;
+  padding: 10px 18px;
+  color: var(--pure-white);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(251, 133, 0, 0.45);
+  transition: var(--transition);
+}
+
+.floating-sunflower-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(251, 133, 0, 0.6);
+}
+
+.btn-sunflower-icon {
+  font-size: 1.35rem;
+  display: inline-block;
+  animation: sunflowerSpinSlow 8s linear infinite;
+}
+
+@keyframes sunflowerSpinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Decoraciones de Girasol en Hero */
+.hero-sunflower-decor {
+  font-size: 2.4rem;
+  display: inline-block;
+  filter: drop-shadow(0 4px 10px rgba(255, 183, 3, 0.45));
+}
+
+.hero-sunflower-decor.left-decor {
+  margin-right: 16px;
+  animation: sunflowerWobble 4s ease-in-out infinite;
+}
+
+.hero-sunflower-decor.right-decor {
+  margin-left: 16px;
+  animation: sunflowerWobble 4s ease-in-out infinite 2s;
+}
+
+@keyframes sunflowerWobble {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-8px) rotate(8deg); }
+}
+
+.btn-sunflower-hero {
+  background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+  color: var(--pure-white);
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 8px 22px rgba(251, 133, 0, 0.35);
+  transition: var(--transition);
+}
+
+.btn-sunflower-hero:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(251, 133, 0, 0.55);
+  color: var(--pure-white);
+}
+
+/* JUEGO: Deshojando el Gran Girasol */
+.pluck-game-wrapper {
+  background: linear-gradient(135deg, #fffef5 0%, #fff6dd 100%);
+  border: 2.5px dashed rgba(255, 183, 3, 0.5);
+  border-radius: 26px;
+  padding: 32px 24px;
+  text-align: center;
+  margin-top: 16px;
+  box-shadow: 0 8px 25px rgba(255, 183, 3, 0.12);
+}
+
+.pluck-badge {
+  display: inline-block;
+  background: #ffeaa7;
+  color: #8c5b05;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 4px 16px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.pluck-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  margin: 10px 0 6px 0;
+}
+
+.pluck-header p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.big-sunflower-container {
+  height: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 16px 0;
+}
+
+.big-sunflower {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.big-sunflower-center {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  background: radial-gradient(circle, #582f0e 0%, #3e1f06 100%);
+  border: 4px solid #ffb703;
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--pure-white);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.center-heart {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+#petalsRemainingText {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #ffeaa7;
+  margin-top: 2px;
+}
+
+.sunflower-petal {
+  position: absolute;
+  width: 38px;
+  height: 62px;
+  background: linear-gradient(180deg, #ffd166 0%, #ffb703 100%);
+  border: 2px solid #e09f00;
+  border-radius: 50% 50% 25% 25%;
+  transform-origin: center 82px;
+  top: 10px;
+  left: 71px;
+  box-shadow: 0 4px 10px rgba(255, 183, 3, 0.4);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.45s ease;
+  cursor: pointer;
+}
+
+.petal-1 { transform: rotate(0deg) translateY(-32px); }
+.petal-2 { transform: rotate(45deg) translateY(-32px); }
+.petal-3 { transform: rotate(90deg) translateY(-32px); }
+.petal-4 { transform: rotate(135deg) translateY(-32px); }
+.petal-5 { transform: rotate(180deg) translateY(-32px); }
+.petal-6 { transform: rotate(225deg) translateY(-32px); }
+.petal-7 { transform: rotate(270deg) translateY(-32px); }
+.petal-8 { transform: rotate(315deg) translateY(-32px); }
+
+.sunflower-petal.plucked {
+  opacity: 0;
+  transform: translateY(90px) scale(0.2) rotate(45deg) !important;
+  pointer-events: none;
+}
+
+.pluck-output-card {
+  background: var(--pure-white);
+  border: 2px solid #ffb703;
+  border-radius: 18px;
+  padding: 14px 22px;
+  max-width: 520px;
+  margin: 0 auto 18px auto;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(255, 183, 3, 0.15);
+}
+
+.pluck-result-text {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  transition: var(--transition);
+}
+
+.pluck-controls {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.btn-pluck {
+  background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+  color: var(--pure-white);
+  border: none;
+  padding: 12px 26px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(251, 133, 0, 0.35);
+  transition: var(--transition);
+}
+
+.btn-pluck:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(251, 133, 0, 0.5);
+}
+
+.btn-reset-pluck {
+  background: var(--pure-white);
+  color: #8c5b05;
+  border: 2px solid #ffb703;
+  padding: 11px 22px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-reset-pluck:hover {
+  background: #fff8e7;
+  transform: translateY(-2px);
+}
+
+/* Guirnalda de Girasoles */
+.sunflower-garland {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  font-size: 1.85rem;
+  margin-top: 24px;
+  opacity: 0.92;
+  animation: garlandSway 4s ease-in-out infinite;
+  flex-wrap: wrap;
+}
+
+@keyframes garlandSway {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@media (max-width: 768px) {
+  .floating-sunflower-button {
+    bottom: 14px;
+    left: 14px;
+    padding: 8px 14px;
+    font-size: 0.78rem;
+  }
+  .hero-sunflower-decor {
+    font-size: 1.8rem;
+  }
+  .sunflower-garland {
+    font-size: 1.4rem;
+    gap: 8px;
+  }
+}
+
+
 

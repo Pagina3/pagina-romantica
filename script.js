@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initFirstDateMap();
   initTicketStamp();
   initSunflowers();
+  initPluckGame();
+  initSunflowerShower();
+  initSunflowerCursorTrail();
   initFlipCards();
   initLoveMeter();
   initSurpriseQuotes();
@@ -216,14 +219,14 @@ function initHeartCanvas() {
     }
   }
 
-  // 30 corazones flotantes ascendentes, 20 pétalos y 16 girasoles descendentes
+  // 30 corazones flotantes ascendentes, 20 pétalos y 36 girasoles descendentes
   for (let i = 0; i < 30; i++) {
     hearts.push(new FloatingHeart());
   }
   for (let i = 0; i < 20; i++) {
     petals.push(new FallingPetal());
   }
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < 36; i++) {
     sunflowers.push(new FloatingSunflower());
   }
 
@@ -995,5 +998,152 @@ function initSunflowers() {
     });
   }
 }
+
+/* ==========================================================
+   15. MINI-JUEGO: DESHOJANDO EL GRAN GIRASOL DE AMOR
+   ========================================================== */
+function initPluckGame() {
+  const btnPluck = document.getElementById('btnPluckPetal');
+  const btnReset = document.getElementById('btnResetPluck');
+  const petals = document.querySelectorAll('.sunflower-petal');
+  const petalsCountText = document.getElementById('petalsRemainingText');
+  const resultText = document.getElementById('pluckResultText');
+  const bigSunflower = document.getElementById('bigSunflower');
+
+  if (!btnPluck || !petals.length) return;
+
+  const pluckPhrases = [
+    "🌻 Me quiere...",
+    "🌻 Me adora...",
+    "🌻 Me ama con locura...",
+    "🌻 Piensa en mí a cada segundo...",
+    "🌻 Soy su princesa favorita...",
+    "🌻 Se le ilumina la vida cuando sonrío...",
+    "🌻 Me cuidará y amará toda la vida...",
+    "💖 ¡Y el resultado final es: TE AMO CON TODA MI ALMA Y POR SIEMPRE! 🌻✨"
+  ];
+
+  let pluckedCount = 0;
+
+  btnPluck.addEventListener('click', () => {
+    if (pluckedCount >= petals.length) return;
+
+    const currentPetal = petals[pluckedCount];
+    currentPetal.classList.add('plucked');
+
+    const phrase = pluckPhrases[pluckedCount] || "🌻 Me ama muchísimo ❤️";
+    pluckedCount++;
+
+    const remaining = petals.length - pluckedCount;
+    if (petalsCountText) {
+      petalsCountText.textContent = remaining > 0 ? `${remaining} pétalos` : '¡Completado!';
+    }
+
+    if (resultText) {
+      resultText.style.opacity = '0';
+      resultText.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        resultText.textContent = phrase;
+        resultText.style.opacity = '1';
+        resultText.style.transform = 'scale(1)';
+        if (remaining === 0) {
+          resultText.style.color = '#d90429';
+          resultText.style.fontSize = '1.15rem';
+        }
+      }, 150);
+    }
+
+    burstHeartsAtElement(currentPetal, 14, ['🌻', '💛', '✨', '❤️']);
+
+    if (remaining === 0) {
+      btnPluck.style.display = 'none';
+      if (btnReset) btnReset.style.display = 'inline-flex';
+      burstHeartsAtElement(bigSunflower, 45, ['🌻', '💛', '✨', '❤️', '💖']);
+    }
+  });
+
+  if (btnReset) {
+    btnReset.addEventListener('click', () => {
+      pluckedCount = 0;
+      petals.forEach(p => p.classList.remove('plucked'));
+      if (petalsCountText) petalsCountText.textContent = `${petals.length} pétalos`;
+      if (resultText) {
+        resultText.textContent = '✨ Toca "Deshojar un Pétalo" para comenzar ✨';
+        resultText.style.color = 'var(--text-dark)';
+        resultText.style.fontSize = '1.02rem';
+      }
+      btnPluck.style.display = 'inline-flex';
+      btnReset.style.display = 'none';
+      burstHeartsAtElement(bigSunflower, 20, ['🌱', '🌻', '✨']);
+    });
+  }
+}
+
+/* ==========================================================
+   16. BOTÓN FLOTANTE: LLUVIA MASIVA DE GIRASOLES
+   ========================================================== */
+function initSunflowerShower() {
+  const showerBtn = document.getElementById('floatingSunflowerShowerBtn');
+  if (!showerBtn) return;
+
+  showerBtn.addEventListener('click', () => {
+    const symbols = ['🌻', '🌻', '🌻', '💛', '✨', '❤️'];
+    for (let i = 0; i < 40; i++) {
+      setTimeout(() => {
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * (window.innerHeight * 0.7) + 50;
+        spawnHeart(x, y, symbols);
+      }, i * 40);
+    }
+
+    showerBtn.style.transform = 'scale(1.2) rotate(15deg)';
+    setTimeout(() => {
+      showerBtn.style.transform = '';
+    }, 400);
+  });
+}
+
+/* ==========================================================
+   17. ESTELA MÁGICA DE GIRASOLES AL MOVER EL MOUSE / DEDO
+   ========================================================== */
+function initSunflowerCursorTrail() {
+  let lastX = 0;
+  let lastY = 0;
+  let lastTime = 0;
+
+  function handleMove(x, y) {
+    const now = Date.now();
+    if (now - lastTime < 130) return; // Control de frecuencia
+    const dist = Math.hypot(x - lastX, y - lastY);
+    if (dist < 40) return;
+
+    lastX = x;
+    lastY = y;
+    lastTime = now;
+
+    if (Math.random() > 0.45) {
+      const miniPetal = document.createElement('div');
+      miniPetal.className = 'particle-heart';
+      miniPetal.textContent = Math.random() > 0.45 ? '🌻' : '✨';
+      miniPetal.style.fontSize = `${Math.random() * 8 + 12}px`;
+      miniPetal.style.left = `${x}px`;
+      miniPetal.style.top = `${y}px`;
+      miniPetal.style.setProperty('--tx', `${(Math.random() - 0.5) * 40}px`);
+      miniPetal.style.setProperty('--ty', `${-(Math.random() * 40 + 20)}px`);
+      miniPetal.style.setProperty('--rot', `${(Math.random() - 0.5) * 60}deg`);
+      document.body.appendChild(miniPetal);
+
+      setTimeout(() => miniPetal.remove(), 1200);
+    }
+  }
+
+  window.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY), { passive: true });
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+      handleMove(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+}
+
 
 
