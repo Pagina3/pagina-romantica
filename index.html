@@ -22,7 +22,7 @@
   <meta http-equiv="Expires" content="0">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <link rel="stylesheet" href="styles.css?v=2.2">
+  <link rel="stylesheet" href="styles.css?v=2.3">
 </head>
 <body>
 
@@ -58,7 +58,7 @@
 
   <!-- Hero / Portada -->
   <header class="hero-section">
-    <div class="hero-badge">❤️ Para la mujer más hermosa de mi vida ❤️</div>
+    <div class="hero-badge">❤️ Para la mujer más hermosa y mi girasol favorito 🌻❤️</div>
     
     <div class="heart-pulse-container">
       <div class="heart-main"></div>
@@ -114,9 +114,12 @@
               <p>
                 Gracias por llenar mis días de alegría, por tus abrazos cálidos que calman todo y por hacerme la persona más afortunada del mundo. Prometo estar siempre a tu lado, cuidarte, apoyarte y recordarte cada día lo increíble y especial que eres.
               </p>
+              <p class="letter-sunflower-note">
+                🌻 Además, así como tus girasoles favoritos siempre buscan la luz del sol para resplandecer, mis ojos y mi corazón siempre te buscan a ti. Eres la luz más hermosa y radiante que ilumina mi vida cada día.
+              </p>
               <div class="letter-sign">
                 <p>Siempre tuyo,</p>
-                <div class="signature">Tu novio que te adora ❤️</div>
+                <div class="signature">Tu novio que te adora ❤️🌻</div>
               </div>
             </div>
           </div>
@@ -126,7 +129,7 @@
             <div class="flap flap-bottom"></div>
             <div class="flap-top" id="envelopeFlap"></div>
             <div class="wax-seal" id="waxSeal">
-              <span>❤️</span>
+              <span>🌻</span>
             </div>
           </div>
         </div>
@@ -317,6 +320,90 @@
       </div>
     </section>
 
+    <!-- SECCIÓN: Un Jardín de Girasoles Para Ti -->
+    <section class="section-container sunflowers-section" id="girasoles">
+      <div class="section-heading">
+        <span class="tag tag-sunflower">Tu flor favorita 🌻</span>
+        <h2>Un Jardín de Girasoles Para Ti</h2>
+        <p>Así como los girasoles buscan la luz del sol, mis ojos y mi corazón siempre te buscan a ti</p>
+      </div>
+
+      <div class="sunflower-card">
+        <div class="sunflower-quote-box">
+          <div class="sunflower-badge">🌻 Mi Sol de Cada Día</div>
+          <h3 class="sunflower-heading">¿Por qué tú eres mi girasol?</h3>
+          <p class="sunflower-text">
+            Los girasoles son conocidos en el mundo por seguir la luz del sol para crecer y resplandecer con toda su fuerza. 
+            Para mí, <strong>tú eres ese sol</strong>. Desde el 10 de enero, cada uno de mis días tiene color, calidez y alegría gracias a tu presencia.
+          </p>
+          <div class="sunflower-pact">
+            <span class="pact-icon">💛</span>
+            <p>En los días soleados celebraremos juntos, y en los días nublados seré el abrazo cálido que te llene de luz y amor.</p>
+          </div>
+        </div>
+
+        <!-- Ramo Interactivo de Girasoles -->
+        <div class="interactive-bouquet-wrapper">
+          <div class="bouquet-header">
+            <span class="bouquet-title">Toca cada girasol para descubrir un mensaje secreto:</span>
+          </div>
+
+          <div class="sunflower-plants-grid">
+            <button class="sunflower-item" data-msg="🌻 'Tu Sonrisa': Ilumina hasta el día más nublado de mi vida. Eres magia pura." data-idx="1">
+              <div class="sunflower-flower">
+                <span class="flower-emoji">🌻</span>
+              </div>
+              <span class="sunflower-stem"></span>
+              <span class="sunflower-label">Tu Sonrisa</span>
+            </button>
+
+            <button class="sunflower-item" data-msg="🌻 'Tu Paz': Estar contigo es sentir que todo está bien. Eres mi refugio favorito." data-idx="2">
+              <div class="sunflower-flower">
+                <span class="flower-emoji">🌻</span>
+              </div>
+              <span class="sunflower-stem"></span>
+              <span class="sunflower-label">Tu Paz</span>
+            </button>
+
+            <button class="sunflower-item" data-msg="🌻 'Tu Mirada': En tus ojitos veo el futuro más lindo que jamás soñé." data-idx="3">
+              <div class="sunflower-flower">
+                <span class="flower-emoji">🌻</span>
+              </div>
+              <span class="sunflower-stem"></span>
+              <span class="sunflower-label">Tu Mirada</span>
+            </button>
+
+            <button class="sunflower-item" data-msg="🌻 'Tu Amor': El regalo más valioso y hermoso que me ha dado el destino." data-idx="4">
+              <div class="sunflower-flower">
+                <span class="flower-emoji">🌻</span>
+              </div>
+              <span class="sunflower-stem"></span>
+              <span class="sunflower-label">Tu Amor</span>
+            </button>
+
+            <button class="sunflower-item" data-msg="🌻 'Para Siempre': Te prometo cuidarte, valorarte y amarte toda la vida." data-idx="5">
+              <div class="sunflower-flower">
+                <span class="flower-emoji">🌻</span>
+              </div>
+              <span class="sunflower-stem"></span>
+              <span class="sunflower-label">Para Siempre</span>
+            </button>
+          </div>
+
+          <div class="sunflower-revealed-bubble" id="sunflowerRevealedMsg">
+            <span class="sparkle-gold">✨</span>
+            <p id="sunflowerTextMsg">¡Toca cualquiera de los girasoles de arriba para florecer un mensaje de amor! 🌻</p>
+          </div>
+
+          <div class="sunflower-actions">
+            <button class="btn-water-sunflowers" id="waterSunflowersBtn">
+              <span>💧 Regar Nuestro Jardín de Amor 🌻</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SECCIÓN: Nuestras Promesas -->
     <section class="section-container promises-cards-section">
       <div class="section-heading">
@@ -460,6 +547,16 @@
             </div>
           </div>
           <div class="polaroid-caption">Un amor para toda la vida ♾️</div>
+        </div>
+
+        <div class="polaroid-item rotate-right">
+          <div class="polaroid-pin">🌻</div>
+          <div class="polaroid-img-wrapper">
+            <div class="romantic-illu illu-sunflower">
+              <span>🌻</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">Tus girasoles favoritos, tan radiantes como tú ✨</div>
         </div>
       </div>
 
@@ -626,6 +723,6 @@
 
   <!-- Leaflet Maps JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="script.js?v=2.2"></script>
+  <script src="script.js?v=2.3"></script>
 </body>
 </html>

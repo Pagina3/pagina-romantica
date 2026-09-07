@@ -2309,5 +2309,292 @@ body {
     align-items: center;
     text-align: center;
   }
+  .sunflower-card {
+    padding: 26px 20px;
+  }
+  .sunflower-quote-box {
+    padding: 20px 18px;
+  }
+  .sunflower-plants-grid {
+    gap: 12px;
+  }
+  .sunflower-flower {
+    width: 54px;
+    height: 54px;
+  }
+  .sunflower-flower .flower-emoji {
+    font-size: 1.7rem;
+  }
 }
+
+/* ==========================================================
+   15. SECCIÓN: JARDÍN DE GIRASOLES (TU FLOR FAVORITA)
+   ========================================================== */
+.tag-sunflower {
+  background: linear-gradient(135deg, #fff3b0 0%, #ffeaa7 100%) !important;
+  color: #8c5b05 !important;
+  border: 1px solid rgba(255, 183, 3, 0.45) !important;
+  box-shadow: 0 4px 12px rgba(255, 183, 3, 0.2);
+}
+
+.letter-sunflower-note {
+  color: #8c5b05;
+  font-style: italic;
+  font-weight: 500;
+  background: #fffcf0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border-left: 3px solid #ffb703;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.sunflower-card {
+  background: var(--pure-white);
+  border-radius: 28px;
+  padding: 38px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-shadow: 0 18px 45px rgba(255, 183, 3, 0.15), 0 8px 24px rgba(217, 4, 41, 0.08);
+  border: 2px solid rgba(255, 183, 3, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.sunflower-card::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 183, 3, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sunflower-quote-box {
+  background: linear-gradient(135deg, #fffdf2 0%, #fff9ec 100%);
+  border-radius: 20px;
+  padding: 26px 30px;
+  border-left: 5px solid #ffb703;
+  box-shadow: 0 6px 18px rgba(255, 183, 3, 0.1);
+}
+
+.sunflower-badge {
+  display: inline-block;
+  background: #ffeaa7;
+  color: #8c5b05;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.sunflower-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.65rem;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.sunflower-text {
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.65;
+}
+
+.sunflower-pact {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 183, 3, 0.25);
+}
+
+.pact-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  animation: heartBeat 2s infinite;
+}
+
+.sunflower-pact p {
+  font-size: 0.92rem;
+  color: #6b4303;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Ramo Interactivo */
+.interactive-bouquet-wrapper {
+  background: #ffffff;
+  border: 2px dashed rgba(255, 183, 3, 0.45);
+  border-radius: 24px;
+  padding: 30px 24px;
+  text-align: center;
+  box-shadow: inset 0 2px 12px rgba(255, 183, 3, 0.06);
+}
+
+.bouquet-header {
+  margin-bottom: 24px;
+}
+
+.bouquet-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.sunflower-plants-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+.sunflower-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+  padding: 6px;
+  border-radius: 16px;
+}
+
+.sunflower-flower {
+  width: 66px;
+  height: 66px;
+  background: radial-gradient(circle, #fff3b0 0%, #ffeaa7 100%);
+  border: 2.5px solid #ffb703;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(255, 183, 3, 0.35);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+}
+
+.sunflower-flower .flower-emoji {
+  font-size: 2.1rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.sunflower-item:hover .sunflower-flower {
+  transform: translateY(-8px) scale(1.15) rotate(12deg);
+  box-shadow: 0 12px 26px rgba(255, 183, 3, 0.55);
+}
+
+.sunflower-item.bloomed .sunflower-flower {
+  border-color: var(--ruby-red);
+  background: radial-gradient(circle, #ffe5ec 0%, #ffccd5 100%);
+  box-shadow: 0 8px 24px rgba(217, 4, 41, 0.35);
+  transform: scale(1.18);
+}
+
+.sunflower-item.bloomed .sunflower-flower .flower-emoji {
+  animation: bloomPulse 1.5s infinite alternate;
+}
+
+@keyframes bloomPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15) rotate(8deg); }
+}
+
+.sunflower-stem {
+  width: 4px;
+  height: 32px;
+  background: linear-gradient(180deg, #588157 0%, #3a5a40 100%);
+  border-radius: 4px;
+}
+
+.sunflower-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: #fff8e7;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 183, 3, 0.3);
+  white-space: nowrap;
+}
+
+.sunflower-revealed-bubble {
+  background: linear-gradient(135deg, #fffdf2 0%, #fff 100%);
+  border: 2px solid #ffb703;
+  border-radius: 20px;
+  padding: 18px 24px;
+  max-width: 580px;
+  margin: 0 auto 22px auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(255, 183, 3, 0.18);
+  min-height: 64px;
+  transition: var(--transition);
+}
+
+.sparkle-gold {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  animation: heartBeat 2s infinite;
+}
+
+#sunflowerTextMsg {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.55;
+  font-style: italic;
+  margin: 0;
+}
+
+.sunflower-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-water-sunflowers {
+  background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+  color: var(--pure-white);
+  border: none;
+  padding: 13px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(251, 133, 0, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.btn-water-sunflowers:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(251, 133, 0, 0.5);
+}
+
+.illu-sunflower {
+  background: linear-gradient(135deg, #fff3b0 0%, #ffeaa7 100%);
+}
+
+.illu-sunflower span {
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 8px rgba(255, 183, 3, 0.3));
+}
+
 

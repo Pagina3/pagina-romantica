@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLoveCounter();
   initFirstDateMap();
   initTicketStamp();
+  initSunflowers();
   initFlipCards();
   initLoveMeter();
   initSurpriseQuotes();
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================
-   1. CANVAS DE CORAZONES FLOTANTES Y PÉTALOS DE ROSAS
+   1. CANVAS DE CORAZONES FLOTANTES, PÉTALOS Y GIRASOLES
    ========================================================== */
 function initHeartCanvas() {
   const canvas = document.getElementById('heartCanvas');
@@ -41,6 +42,7 @@ function initHeartCanvas() {
 
   const hearts = [];
   const petals = [];
+  const sunflowers = [];
   const heartColors = [
     'rgba(239, 35, 60, 0.45)',
     'rgba(217, 4, 41, 0.40)',
@@ -136,12 +138,93 @@ function initHeartCanvas() {
     }
   }
 
-  // 35 corazones flotantes ascendentes y 25 pétalos descendentes
-  for (let i = 0; i < 35; i++) {
+  class FloatingSunflower {
+    constructor() {
+      this.reset();
+      this.y = Math.random() * height;
+    }
+
+    reset() {
+      this.x = Math.random() * width;
+      this.y = -35;
+      this.size = Math.random() * 9 + 8;
+      this.speedY = Math.random() * 0.7 + 0.35;
+      this.speedX = (Math.random() - 0.5) * 0.4;
+      this.angle = Math.random() * Math.PI * 2;
+      this.angleSpeed = (Math.random() - 0.5) * 0.018;
+      this.swayAngle = Math.random() * Math.PI * 2;
+      this.swaySpeed = Math.random() * 0.015 + 0.008;
+      this.opacity = Math.random() * 0.35 + 0.45;
+    }
+
+    update() {
+      this.y += this.speedY;
+      this.swayAngle += this.swaySpeed;
+      this.x += Math.sin(this.swayAngle) * 0.6 + this.speedX;
+      this.angle += this.angleSpeed;
+
+      if (this.y > height + 40 || this.x < -40 || this.x > width + 40) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.angle);
+      ctx.globalAlpha = this.opacity;
+
+      const numPetals = 10;
+      const petalLen = this.size;
+      const petalWidth = this.size * 0.36;
+
+      // Pétalos dorados
+      ctx.fillStyle = '#ffb703';
+      for (let i = 0; i < numPetals; i++) {
+        ctx.save();
+        ctx.rotate((i * Math.PI * 2) / numPetals);
+        ctx.beginPath();
+        ctx.ellipse(0, -petalLen * 0.65, petalWidth, petalLen * 0.48, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Capa de pétalos claros
+      ctx.fillStyle = '#ffeaa7';
+      for (let i = 0; i < numPetals; i++) {
+        ctx.save();
+        ctx.rotate(((i + 0.5) * Math.PI * 2) / numPetals);
+        ctx.beginPath();
+        ctx.ellipse(0, -petalLen * 0.58, petalWidth * 0.8, petalLen * 0.42, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Centro del girasol
+      ctx.beginPath();
+      ctx.arc(0, 0, this.size * 0.45, 0, Math.PI * 2);
+      ctx.fillStyle = '#582f0e';
+      ctx.fill();
+
+      // Centro interior
+      ctx.beginPath();
+      ctx.arc(0, 0, this.size * 0.28, 0, Math.PI * 2);
+      ctx.fillStyle = '#7f4f24';
+      ctx.fill();
+
+      ctx.restore();
+    }
+  }
+
+  // 30 corazones flotantes ascendentes, 20 pétalos y 16 girasoles descendentes
+  for (let i = 0; i < 30; i++) {
     hearts.push(new FloatingHeart());
   }
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 20; i++) {
     petals.push(new FallingPetal());
+  }
+  for (let i = 0; i < 16; i++) {
+    sunflowers.push(new FloatingSunflower());
   }
 
   function animate() {
@@ -153,6 +236,10 @@ function initHeartCanvas() {
     petals.forEach(p => {
       p.update();
       p.draw();
+    });
+    sunflowers.forEach(s => {
+      s.update();
+      s.draw();
     });
     requestAnimationFrame(animate);
   }
@@ -296,7 +383,10 @@ function initSurpriseQuotes() {
     "No te quiero para un ratito, te quiero para siempre y mucho más allá.",
     "Haces que mi corazón lata con una emoción que jamás creí posible.",
     "Eres mi refugio favorito, mi risa favorita y mi persona favorita en todo el universo.",
-    "Si volviera a nacer mil veces, las mil veces te buscaría y me volvería a enamorar de ti."
+    "Si volviera a nacer mil veces, las mil veces te buscaría y me volvería a enamorar de ti.",
+    "Al igual que los girasoles buscan la luz del sol para florecer, mis ojos y mi corazón siempre te buscan a ti. Eres mi girasol favorito 🌻",
+    "En un campo infinito de flores, siempre te elegiría a ti: eres el girasol más hermoso y radiante que ilumina mi vida 🌻💛",
+    "Eres mi sol de cada día... por eso, como un girasol, nunca me canso de mirar tu luz y tu hermosa sonrisa ✨🌻"
   ];
 
   const surpriseText = document.getElementById('surpriseText');
@@ -569,10 +659,10 @@ function initClickHearts() {
   });
 }
 
-function spawnHeart(x, y) {
+function spawnHeart(x, y, customSymbols = null) {
   const heart = document.createElement('div');
   heart.className = 'particle-heart';
-  const symbols = ['❤️', '💖', '💕', '🤍', '✨', '🌹'];
+  const symbols = customSymbols || ['❤️', '💖', '🌻', '💕', '💛', '✨', '🌹'];
   heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
 
   const randomTx = (Math.random() - 0.5) * 80;
@@ -594,7 +684,7 @@ function spawnHeart(x, y) {
   }, 1800);
 }
 
-function burstHeartsAtElement(element, count = 15) {
+function burstHeartsAtElement(element, count = 15, customSymbols = null) {
   if (!element) return;
   const rect = element.getBoundingClientRect();
   const centerX = rect.left + rect.width / 2;
@@ -604,7 +694,8 @@ function burstHeartsAtElement(element, count = 15) {
     setTimeout(() => {
       spawnHeart(
         centerX + (Math.random() - 0.5) * 50,
-        centerY + (Math.random() - 0.5) * 30
+        centerY + (Math.random() - 0.5) * 30,
+        customSymbols
       );
     }, i * 35);
   }
@@ -844,4 +935,65 @@ function initScratchCard() {
     revealBtn.addEventListener('click', revealSecret);
   }
 }
+
+/* ==========================================================
+   14. JARDÍN DE GIRASOLES INTERACTIVO (FLOR FAVORITA)
+   ========================================================== */
+function initSunflowers() {
+  const sunflowerItems = document.querySelectorAll('.sunflower-item');
+  const revealedText = document.getElementById('sunflowerTextMsg');
+  const revealedBubble = document.getElementById('sunflowerRevealedMsg');
+  const waterBtn = document.getElementById('waterSunflowersBtn');
+
+  if (!sunflowerItems.length) return;
+
+  sunflowerItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const msg = item.getAttribute('data-msg');
+      if (revealedText && msg) {
+        revealedText.style.opacity = '0';
+        revealedText.style.transform = 'translateY(6px)';
+        setTimeout(() => {
+          revealedText.textContent = msg;
+          revealedText.style.opacity = '1';
+          revealedText.style.transform = 'translateY(0)';
+        }, 150);
+      }
+
+      // Marcar girasol como florecido
+      item.classList.add('bloomed');
+
+      // Animación de pulso en el mensaje
+      if (revealedBubble) {
+        revealedBubble.style.borderColor = '#d90429';
+        setTimeout(() => {
+          revealedBubble.style.borderColor = '#ffb703';
+        }, 600);
+      }
+
+      burstHeartsAtElement(item, 20, ['🌻', '💛', '✨', '❤️', '💖']);
+    });
+  });
+
+  if (waterBtn) {
+    waterBtn.addEventListener('click', () => {
+      sunflowerItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('bloomed');
+        }, index * 100);
+      });
+
+      if (revealedText) {
+        revealedText.style.opacity = '0';
+        setTimeout(() => {
+          revealedText.textContent = '¡Has regado nuestro jardín con todo tu amor! Nuestros girasoles florecen más radiantes y hermosos que nunca gracias a ti ❤️🌻✨';
+          revealedText.style.opacity = '1';
+        }, 150);
+      }
+
+      burstHeartsAtElement(waterBtn, 40, ['🌻', '💛', '✨', '❤️', '💖']);
+    });
+  }
+}
+
 
