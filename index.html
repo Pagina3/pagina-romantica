@@ -22,7 +22,7 @@
   <meta http-equiv="Expires" content="0">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <link rel="stylesheet" href="styles.css?v=2.4">
+  <link rel="stylesheet" href="styles.css?v=2.5">
 </head>
 <body>
 
@@ -570,68 +570,486 @@
       </div>
     </section>
 
-    <!-- SECCIÓN: Galería de Recuerdos Estilo Polaroid -->
-    <section class="section-container gallery-section">
+        <!-- SECCIÓN: Galería de Recuerdos Estilo Polaroid -->
+    <section class="section-container gallery-section" id="galeria">
       <div class="section-heading">
-        <span class="tag">Nuestros Momentos</span>
+        <span class="tag tag-sunflower">Nuestros Momentos 🌻❤️</span>
         <h2>Galería de Amor</h2>
-        <p>Momentos mágicos que guardo con cariño en mi alma</p>
+        <p>Cada una de estas fotos guarda una sonrisa, un abrazo y un pedacito de nuestra historia</p>
       </div>
 
-      <div class="polaroid-grid">
-        <div class="polaroid-item rotate-left">
-          <div class="polaroid-pin">❤️</div>
-          <div class="polaroid-img-wrapper">
-            <div class="romantic-illu illu-1">
-              <span>🌹</span>
+      <div class="gallery-badge-banner">
+        <span class="gallery-badge-icon">🌻</span>
+        <span class="gallery-badge-text"><strong>46 Recuerdos Inolvidables</strong> llenos de amor y risas</span>
+        <span class="gallery-badge-icon">❤️</span>
+      </div>
+
+      <!-- Carrusel Destacado -->
+      <div class="featured-carousel-section">
+        <div class="carousel-subheading">
+          <span class="carousel-title-icon">✨</span>
+          <h3>Momentos Destacados</h3>
+          <span class="carousel-hint">Toca o desliza para ver más</span>
+        </div>
+        <div class="featured-carousel-container">
+          <button class="carousel-nav-btn carousel-prev-btn" id="carouselPrevBtn" aria-label="Anterior">‹</button>
+          <div class="carousel-viewport" id="carouselViewport">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-slide" data-index="0">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_01.jpg" alt="Momento romántico 1" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">❤️</span>
+                    <p class="carousel-slide-caption">Donde comenzó nuestra hermosa historia ❤️</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="1">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_02.jpg" alt="Momento romántico 2" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">🌻</span>
+                    <p class="carousel-slide-caption">Tu risa, mi melodía favorita en el mundo ✨</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="2">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_03.jpg" alt="Momento romántico 3" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">✨</span>
+                    <p class="carousel-slide-caption">Cada instante a tu lado es pura magia 💫</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="3">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_04.jpg" alt="Momento romántico 4" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">💖</span>
+                    <p class="carousel-slide-caption">Mi persona favorita en todo el universo 💖</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="4">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_05.jpg" alt="Momento romántico 5" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">💛</span>
+                    <p class="carousel-slide-caption">Juntitos siempre, pase lo que pase 🫂</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="5">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_06.jpg" alt="Momento romántico 6" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">🌹</span>
+                    <p class="carousel-slide-caption">Tus ojitos hermosos que iluminan mi vida 🌻</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="6">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_07.jpg" alt="Momento romántico 7" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">❤️</span>
+                    <p class="carousel-slide-caption">Un amor que crece más y más cada segundo 🌹</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="7">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_08.jpg" alt="Momento romántico 8" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">🌻</span>
+                    <p class="carousel-slide-caption">Nuestras locuras y risas compartidas 🥰</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="8">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_09.jpg" alt="Momento romántico 9" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">✨</span>
+                    <p class="carousel-slide-caption">El mejor lugar del mundo es a tu lado 🏡</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="9">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_10.jpg" alt="Momento romántico 10" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">💖</span>
+                    <p class="carousel-slide-caption">Nuestra complicidad única e inigualable ✨</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="10">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_11.jpg" alt="Momento romántico 11" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">💛</span>
+                    <p class="carousel-slide-caption">Tu sonrisa radiante como un girasol 🌻</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="11">
+                <div class="carousel-slide-inner">
+                  <img src="fotos/foto_12.jpg" alt="Momento romántico 12" loading="lazy">
+                  <div class="carousel-slide-overlay">
+                    <span class="carousel-slide-pin">🌹</span>
+                    <p class="carousel-slide-caption">Amor del bueno, sincero y para siempre ♾️</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="polaroid-caption">Donde comenzó nuestra historia ❤️</div>
+          <button class="carousel-nav-btn carousel-next-btn" id="carouselNextBtn" aria-label="Siguiente">›</button>
         </div>
+        <div class="carousel-dots-container" id="carouselDots"></div>
+      </div>
 
-        <div class="polaroid-item rotate-right">
+      <!-- Cuadrícula Polaroid Completa -->
+      <div class="polaroid-collection-header">
+        <h3>🌻 Álbum Completo de Recuerdos 🌻</h3>
+        <p>Toca cualquier foto para abrirla en pantalla grande con su dedicatoria especial</p>
+      </div>
+
+      <div class="polaroid-grid" id="polaroidGrid">
+        <div class="polaroid-item rotate-left" data-index="0">
           <div class="polaroid-pin">❤️</div>
           <div class="polaroid-img-wrapper">
-            <div class="romantic-illu illu-2">
-              <span>👩‍❤️‍👨</span>
-            </div>
+            <img src="fotos/foto_01.jpg" alt="Recuerdo 1 de nuestro amor" loading="lazy">
           </div>
-          <div class="polaroid-caption">Tu risa, mi melodía favorita ✨</div>
+          <div class="polaroid-caption">Donde comenzó nuestra hermosa historia ❤️</div>
         </div>
-
-        <div class="polaroid-item rotate-center">
-          <div class="polaroid-pin">❤️</div>
-          <div class="polaroid-img-wrapper">
-            <div class="romantic-illu illu-3">
-              <span>🌅</span>
-            </div>
-          </div>
-          <div class="polaroid-caption">Cualquier atardecer a tu lado es mágico</div>
-        </div>
-
-        <div class="polaroid-item rotate-left-alt">
-          <div class="polaroid-pin">❤️</div>
-          <div class="polaroid-img-wrapper">
-            <div class="romantic-illu illu-4">
-              <span>💍</span>
-            </div>
-          </div>
-          <div class="polaroid-caption">Un amor para toda la vida ♾️</div>
-        </div>
-
-        <div class="polaroid-item rotate-right">
+        <div class="polaroid-item rotate-right" data-index="1">
           <div class="polaroid-pin">🌻</div>
           <div class="polaroid-img-wrapper">
-            <div class="romantic-illu illu-sunflower">
-              <span>🌻</span>
-            </div>
+            <img src="fotos/foto_02.jpg" alt="Recuerdo 2 de nuestro amor" loading="lazy">
           </div>
-          <div class="polaroid-caption">Tus girasoles favoritos, tan radiantes como tú ✨</div>
+          <div class="polaroid-caption">Tu risa, mi melodía favorita en el mundo ✨</div>
         </div>
+        <div class="polaroid-item rotate-center" data-index="2">
+          <div class="polaroid-pin">✨</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_03.jpg" alt="Recuerdo 3 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Cada instante a tu lado es pura magia 💫</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt" data-index="3">
+          <div class="polaroid-pin">💖</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_04.jpg" alt="Recuerdo 4 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Mi persona favorita en todo el universo 💖</div>
+        </div>
+        <div class="polaroid-item rotate-left" data-index="4">
+          <div class="polaroid-pin">💛</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_05.jpg" alt="Recuerdo 5 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Juntitos siempre, pase lo que pase 🫂</div>
+        </div>
+        <div class="polaroid-item rotate-right" data-index="5">
+          <div class="polaroid-pin">🌹</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_06.jpg" alt="Recuerdo 6 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Tus ojitos hermosos que iluminan mi vida 🌻</div>
+        </div>
+        <div class="polaroid-item rotate-center" data-index="6">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_07.jpg" alt="Recuerdo 7 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Un amor que crece más y más cada segundo 🌹</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt" data-index="7">
+          <div class="polaroid-pin">🌻</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_08.jpg" alt="Recuerdo 8 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Nuestras locuras y risas compartidas 🥰</div>
+        </div>
+        <div class="polaroid-item rotate-left" data-index="8">
+          <div class="polaroid-pin">✨</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_09.jpg" alt="Recuerdo 9 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">El mejor lugar del mundo es a tu lado 🏡</div>
+        </div>
+        <div class="polaroid-item rotate-right" data-index="9">
+          <div class="polaroid-pin">💖</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_10.jpg" alt="Recuerdo 10 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Nuestra complicidad única e inigualable ✨</div>
+        </div>
+        <div class="polaroid-item rotate-center" data-index="10">
+          <div class="polaroid-pin">💛</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_11.jpg" alt="Recuerdo 11 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Tu sonrisa radiante como un girasol 🌻</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt" data-index="11">
+          <div class="polaroid-pin">🌹</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_12.jpg" alt="Recuerdo 12 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Amor del bueno, sincero y para siempre ♾️</div>
+        </div>
+        <div class="polaroid-item rotate-left polaroid-collapsed-hidden" data-index="12">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_13.jpg" alt="Recuerdo 13 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Gracias por hacerme el hombre más feliz ❤️</div>
+        </div>
+        <div class="polaroid-item rotate-right polaroid-collapsed-hidden" data-index="13">
+          <div class="polaroid-pin">🌻</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_14.jpg" alt="Recuerdo 14 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Cualquier día ordinario contigo es especial 🌟</div>
+        </div>
+        <div class="polaroid-item rotate-center polaroid-collapsed-hidden" data-index="14">
+          <div class="polaroid-pin">✨</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_15.jpg" alt="Recuerdo 15 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Tú y yo contra el mundo entero 🤝</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt polaroid-collapsed-hidden" data-index="15">
+          <div class="polaroid-pin">💖</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_16.jpg" alt="Recuerdo 16 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Ese brillo en tu mirada que me enamora 💕</div>
+        </div>
+        <div class="polaroid-item rotate-left polaroid-collapsed-hidden" data-index="16">
+          <div class="polaroid-pin">💛</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_17.jpg" alt="Recuerdo 17 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Momentos que guardo en lo más profundo de mi alma 💌</div>
+        </div>
+        <div class="polaroid-item rotate-right polaroid-collapsed-hidden" data-index="17">
+          <div class="polaroid-pin">🌹</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_18.jpg" alt="Recuerdo 18 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">La reina de mi corazón 👑</div>
+        </div>
+        <div class="polaroid-item rotate-center polaroid-collapsed-hidden" data-index="18">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_19.jpg" alt="Recuerdo 19 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Amor a primera, segunda y milésima vista 🥰</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt polaroid-collapsed-hidden" data-index="19">
+          <div class="polaroid-pin">🌻</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_20.jpg" alt="Recuerdo 20 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Contigo hasta el fin del mundo y más allá 🚀</div>
+        </div>
+        <div class="polaroid-item rotate-left polaroid-collapsed-hidden" data-index="20">
+          <div class="polaroid-pin">✨</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_21.jpg" alt="Recuerdo 21 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Mi refugio seguro, mi paz y mi alegría 🕊️</div>
+        </div>
+        <div class="polaroid-item rotate-right polaroid-collapsed-hidden" data-index="21">
+          <div class="polaroid-pin">💖</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_22.jpg" alt="Recuerdo 22 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Cada abrazo tuyo me reinicia la vida 🫂</div>
+        </div>
+        <div class="polaroid-item rotate-center polaroid-collapsed-hidden" data-index="22">
+          <div class="polaroid-pin">💛</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_23.jpg" alt="Recuerdo 23 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">La casualidad más hermosa de mi destino ✨</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt polaroid-collapsed-hidden" data-index="23">
+          <div class="polaroid-pin">🌹</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_24.jpg" alt="Recuerdo 24 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Un amor que no tiene fin ♾️❤️</div>
+        </div>
+        <div class="polaroid-item rotate-left polaroid-collapsed-hidden" data-index="24">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_25.jpg" alt="Recuerdo 25 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Tu dulzura y ternura que me vuelven loco 🍭</div>
+        </div>
+        <div class="polaroid-item rotate-right polaroid-collapsed-hidden" data-index="25">
+          <div class="polaroid-pin">🌻</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_26.jpg" alt="Recuerdo 26 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Recuerdos inolvidables que valen oro 🪙</div>
+        </div>
+        <div class="polaroid-item rotate-center polaroid-collapsed-hidden" data-index="26">
+          <div class="polaroid-pin">✨</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_27.jpg" alt="Recuerdo 27 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Juntos somos el mejor equipo del mundo 🏆</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt polaroid-collapsed-hidden" data-index="27">
+          <div class="polaroid-pin">💖</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_28.jpg" alt="Recuerdo 28 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Tu belleza ilumina todo a tu alrededor 🌺</div>
+        </div>
+        <div class="polaroid-item rotate-left polaroid-collapsed-hidden" data-index="28">
+          <div class="polaroid-pin">💛</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_29.jpg" alt="Recuerdo 29 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Mi sol en los días nublados ☀️🌻</div>
+        </div>
+        <div class="polaroid-item rotate-right polaroid-collapsed-hidden" data-index="29">
+          <div class="polaroid-pin">🌹</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_30.jpg" alt="Recuerdo 30 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Pláticas infinitas que nunca quiero que terminen 💬</div>
+        </div>
+        <div class="polaroid-item rotate-center polaroid-collapsed-hidden" data-index="30">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_31.jpg" alt="Recuerdo 31 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Besos que curan cualquier día gris 💋</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt polaroid-collapsed-hidden" data-index="31">
+          <div class="polaroid-pin">🌻</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_32.jpg" alt="Recuerdo 32 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Construyendo un futuro hermoso de la mano 🌅</div>
+        </div>
+        <div class="polaroid-item rotate-left polaroid-collapsed-hidden" data-index="32">
+          <div class="polaroid-pin">✨</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_33.jpg" alt="Recuerdo 33 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">La dueña absoluta de mis pensamientos 💭</div>
+        </div>
+        <div class="polaroid-item rotate-right polaroid-collapsed-hidden" data-index="33">
+          <div class="polaroid-pin">💖</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_34.jpg" alt="Recuerdo 34 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Nuestra historia de amor favorita 📖</div>
+        </div>
+        <div class="polaroid-item rotate-center polaroid-collapsed-hidden" data-index="34">
+          <div class="polaroid-pin">💛</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_35.jpg" alt="Recuerdo 35 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Paz, complicidad y felicidad plena ✨</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt polaroid-collapsed-hidden" data-index="35">
+          <div class="polaroid-pin">🌹</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_36.jpg" alt="Recuerdo 36 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Te amo hoy más que ayer y menos que mañana ❤️</div>
+        </div>
+        <div class="polaroid-item rotate-left polaroid-collapsed-hidden" data-index="36">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_37.jpg" alt="Recuerdo 37 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Esa mirada que me desarma por completo 👀</div>
+        </div>
+        <div class="polaroid-item rotate-right polaroid-collapsed-hidden" data-index="37">
+          <div class="polaroid-pin">🌻</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_38.jpg" alt="Recuerdo 38 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Mi lugar seguro en este planeta 🌍</div>
+        </div>
+        <div class="polaroid-item rotate-center polaroid-collapsed-hidden" data-index="38">
+          <div class="polaroid-pin">✨</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_39.jpg" alt="Recuerdo 39 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Cómplices de risas, secretos y sueños 🌙</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt polaroid-collapsed-hidden" data-index="39">
+          <div class="polaroid-pin">💖</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_40.jpg" alt="Recuerdo 40 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">La mujer de mis ojos y de mi vida 🌹</div>
+        </div>
+        <div class="polaroid-item rotate-left polaroid-collapsed-hidden" data-index="40">
+          <div class="polaroid-pin">💛</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_41.jpg" alt="Recuerdo 41 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Amor puro, tierno y verdadero 💖</div>
+        </div>
+        <div class="polaroid-item rotate-right polaroid-collapsed-hidden" data-index="41">
+          <div class="polaroid-pin">🌹</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_42.jpg" alt="Recuerdo 42 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Cada recuerdo a tu lado es un tesoro 💎</div>
+        </div>
+        <div class="polaroid-item rotate-center polaroid-collapsed-hidden" data-index="42">
+          <div class="polaroid-pin">❤️</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_43.jpg" alt="Recuerdo 43 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Tú eres mi hogar donde sea que estemos 🏡</div>
+        </div>
+        <div class="polaroid-item rotate-left-alt polaroid-collapsed-hidden" data-index="43">
+          <div class="polaroid-pin">🌻</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_44.jpg" alt="Recuerdo 44 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Por mil vidas más a tu lado ♾️✨</div>
+        </div>
+        <div class="polaroid-item rotate-left polaroid-collapsed-hidden" data-index="44">
+          <div class="polaroid-pin">✨</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_45.jpg" alt="Recuerdo 45 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Inseparables y con el corazón lleno de amor 🥰</div>
+        </div>
+        <div class="polaroid-item rotate-right polaroid-collapsed-hidden" data-index="45">
+          <div class="polaroid-pin">💖</div>
+          <div class="polaroid-img-wrapper">
+            <img src="fotos/foto_46.jpg" alt="Recuerdo 46 de nuestro amor" loading="lazy">
+          </div>
+          <div class="polaroid-caption">Te quiero mucho y más... ¡y te amo infinitamente! ❤️🌻</div>
+        </div>
+      </div>
+
+      <div class="gallery-expand-wrapper">
+        <button class="btn-expand-gallery" id="btnExpandGallery">
+          <span class="expand-icon">🌻</span>
+          <span id="btnExpandText">Ver Todas Nuestras Fotos (46 Recuerdos) ❤️</span>
+        </button>
       </div>
 
       <div class="polaroid-tip">
-        💡 <em>Nota: Puedes agregar fácilmente tus fotos reales juntos reemplazando las imágenes en el código.</em>
+        🌻 <em>Toca cualquier foto para verla en pantalla completa, navegar entre todas las fotos con las flechas o deslizar con el dedo en tu celular.</em>
       </div>
     </section>
 
@@ -778,6 +1196,36 @@
   </div>
 
 
+  
+  <!-- Modal Lightbox de Pantalla Completa para Fotos -->
+  <div class="photo-lightbox-modal" id="photoLightboxModal" aria-hidden="true" role="dialog" aria-label="Visor de Fotos">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-container">
+      <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Cerrar visor">✕</button>
+      
+      <div class="lightbox-main-view">
+        <button class="lightbox-arrow lightbox-arrow-prev" id="lightboxPrevBtn" aria-label="Foto anterior">‹</button>
+        
+        <div class="lightbox-figure" id="lightboxFigure">
+          <div class="lightbox-pin" id="lightboxPin">🌻</div>
+          <img src="" alt="Recuerdo de amor" id="lightboxImg" class="lightbox-image">
+          <div class="lightbox-heart-burst" id="lightboxHeartBurst">❤️</div>
+        </div>
+
+        <button class="lightbox-arrow lightbox-arrow-next" id="lightboxNextBtn" aria-label="Siguiente foto">›</button>
+      </div>
+
+      <div class="lightbox-caption-bar">
+        <div class="lightbox-counter" id="lightboxCounter">1 / 46</div>
+        <p class="lightbox-caption-text" id="lightboxCaption">Cargando recuerdo...</p>
+        <button class="lightbox-love-btn" id="lightboxLoveBtn">
+          <span class="love-btn-icon">💖</span>
+          <span>¡Me encanta este recuerdo!</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Pie de Página -->
   <footer class="romantic-footer">
     <div class="footer-heart-divider">
@@ -793,6 +1241,6 @@
 
   <!-- Leaflet Maps JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="script.js?v=2.4"></script>
+  <script src="script.js?v=2.5"></script>
 </body>
 </html>

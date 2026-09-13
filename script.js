@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScratchCard();
   initModalAndPromises();
   initRomanticMusic();
+  initPhotoGallery();
   initClickHearts();
   cleanServiceWorkerCache();
 });
@@ -1147,3 +1148,708 @@ function initSunflowerCursorTrail() {
 
 
 
+
+
+/* ==========================================================
+   18. GALERÍA DE 46 FOTOS, CARRUSEL Y LIGHTBOX PANTALLA COMPLETA
+   ========================================================== */
+const PHOTOS_DATA = [
+  {
+    "filename": "fotos/foto_01.jpg",
+    "original_name": "2ca79cb3-b0d9-4418-86f5-426b6e467a08.jpg",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Donde comenzó nuestra hermosa historia ❤️",
+    "pin": "❤️"
+  },
+  {
+    "filename": "fotos/foto_02.jpg",
+    "original_name": "3b22f0cc-c02d-432d-9dc8-e55a4ab09140.jpg",
+    "width": 960,
+    "height": 1280,
+    "is_portrait": true,
+    "caption": "Tu risa, mi melodía favorita en el mundo ✨",
+    "pin": "🌻"
+  },
+  {
+    "filename": "fotos/foto_03.jpg",
+    "original_name": "3ef2ee54-6a95-482a-b023-a4c16f29d153.jpg",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Cada instante a tu lado es pura magia 💫",
+    "pin": "✨"
+  },
+  {
+    "filename": "fotos/foto_04.jpg",
+    "original_name": "6EE16107-74DE-4EA4-B3F8-2FE81B1EA9A9.jpg",
+    "width": 828,
+    "height": 1472,
+    "is_portrait": true,
+    "caption": "Mi persona favorita en todo el universo 💖",
+    "pin": "💖"
+  },
+  {
+    "filename": "fotos/foto_05.jpg",
+    "original_name": "933bfc9e-d6b0-4273-8752-e901bebc09ec.jpg",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Juntitos siempre, pase lo que pase 🫂",
+    "pin": "💛"
+  },
+  {
+    "filename": "fotos/foto_06.jpg",
+    "original_name": "42778b55-558e-4e52-b2c3-98ea03c421b4.jpg",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Tus ojitos hermosos que iluminan mi vida 🌻",
+    "pin": "🌹"
+  },
+  {
+    "filename": "fotos/foto_07.jpg",
+    "original_name": "45533a7d-0161-4444-bef5-7f81686cd875.jpg",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Un amor que crece más y más cada segundo 🌹",
+    "pin": "❤️"
+  },
+  {
+    "filename": "fotos/foto_08.jpg",
+    "original_name": "981300AD-6FA9-46DD-8717-BFF7E01DA014_Original.JPG",
+    "width": 1080,
+    "height": 1650,
+    "is_portrait": true,
+    "caption": "Nuestras locuras y risas compartidas 🥰",
+    "pin": "🌻"
+  },
+  {
+    "filename": "fotos/foto_09.jpg",
+    "original_name": "ab958c1c-9b1d-4893-905a-5ddb87031f47.jpg",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "El mejor lugar del mundo es a tu lado 🏡",
+    "pin": "✨"
+  },
+  {
+    "filename": "fotos/foto_10.jpg",
+    "original_name": "c7261087-d6d9-4e75-bdb0-2a13a6c56314.jpg",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Nuestra complicidad única e inigualable ✨",
+    "pin": "💖"
+  },
+  {
+    "filename": "fotos/foto_11.jpg",
+    "original_name": "CCC4C1C7-2D26-4F09-8419-2713376C5D29.jpg",
+    "width": 828,
+    "height": 1472,
+    "is_portrait": true,
+    "caption": "Tu sonrisa radiante como un girasol 🌻",
+    "pin": "💛"
+  },
+  {
+    "filename": "fotos/foto_12.jpg",
+    "original_name": "cfe9d33f-44cd-43fe-ae12-58d7de7ff2a3_Original.JPG",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Amor del bueno, sincero y para siempre ♾️",
+    "pin": "🌹"
+  },
+  {
+    "filename": "fotos/foto_13.jpg",
+    "original_name": "f8747aeb-4e86-4aca-9692-dc78020e26f3_Original.JPG",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Gracias por hacerme el hombre más feliz ❤️",
+    "pin": "❤️"
+  },
+  {
+    "filename": "fotos/foto_14.jpg",
+    "original_name": "IMG_2647_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Cualquier día ordinario contigo es especial 🌟",
+    "pin": "🌻"
+  },
+  {
+    "filename": "fotos/foto_15.jpg",
+    "original_name": "IMG_3057_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Tú y yo contra el mundo entero 🤝",
+    "pin": "✨"
+  },
+  {
+    "filename": "fotos/foto_16.jpg",
+    "original_name": "IMG_3060_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Ese brillo en tu mirada que me enamora 💕",
+    "pin": "💖"
+  },
+  {
+    "filename": "fotos/foto_17.jpg",
+    "original_name": "IMG_3067_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Momentos que guardo en lo más profundo de mi alma 💌",
+    "pin": "💛"
+  },
+  {
+    "filename": "fotos/foto_18.jpg",
+    "original_name": "IMG_3078_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "La reina de mi corazón 👑",
+    "pin": "🌹"
+  },
+  {
+    "filename": "fotos/foto_19.jpg",
+    "original_name": "IMG_3079_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Amor a primera, segunda y milésima vista 🥰",
+    "pin": "❤️"
+  },
+  {
+    "filename": "fotos/foto_20.jpg",
+    "original_name": "IMG_3081_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Contigo hasta el fin del mundo y más allá 🚀",
+    "pin": "🌻"
+  },
+  {
+    "filename": "fotos/foto_21.jpg",
+    "original_name": "IMG_3090_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Mi refugio seguro, mi paz y mi alegría 🕊️",
+    "pin": "✨"
+  },
+  {
+    "filename": "fotos/foto_22.jpg",
+    "original_name": "IMG_3093_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Cada abrazo tuyo me reinicia la vida 🫂",
+    "pin": "💖"
+  },
+  {
+    "filename": "fotos/foto_23.jpg",
+    "original_name": "IMG_3230_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "La casualidad más hermosa de mi destino ✨",
+    "pin": "💛"
+  },
+  {
+    "filename": "fotos/foto_24.jpg",
+    "original_name": "IMG_3238_Original.HEIC",
+    "width": 1200,
+    "height": 900,
+    "is_portrait": false,
+    "caption": "Un amor que no tiene fin ♾️❤️",
+    "pin": "🌹"
+  },
+  {
+    "filename": "fotos/foto_25.jpg",
+    "original_name": "IMG_3238_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Tu dulzura y ternura que me vuelven loco 🍭",
+    "pin": "❤️"
+  },
+  {
+    "filename": "fotos/foto_26.jpg",
+    "original_name": "IMG_3243_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Recuerdos inolvidables que valen oro 🪙",
+    "pin": "🌻"
+  },
+  {
+    "filename": "fotos/foto_27.jpg",
+    "original_name": "IMG_3244_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Juntos somos el mejor equipo del mundo 🏆",
+    "pin": "✨"
+  },
+  {
+    "filename": "fotos/foto_28.jpg",
+    "original_name": "IMG_3447_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Tu belleza ilumina todo a tu alrededor 🌺",
+    "pin": "💖"
+  },
+  {
+    "filename": "fotos/foto_29.jpg",
+    "original_name": "IMG_3448_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Mi sol en los días nublados ☀️🌻",
+    "pin": "💛"
+  },
+  {
+    "filename": "fotos/foto_30.jpg",
+    "original_name": "IMG_3494_Original.HEIC",
+    "width": 1200,
+    "height": 900,
+    "is_portrait": false,
+    "caption": "Pláticas infinitas que nunca quiero que terminen 💬",
+    "pin": "🌹"
+  },
+  {
+    "filename": "fotos/foto_31.jpg",
+    "original_name": "IMG_3495_Original.HEIC",
+    "width": 1200,
+    "height": 900,
+    "is_portrait": false,
+    "caption": "Besos que curan cualquier día gris 💋",
+    "pin": "❤️"
+  },
+  {
+    "filename": "fotos/foto_32.jpg",
+    "original_name": "IMG_3498_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Construyendo un futuro hermoso de la mano 🌅",
+    "pin": "🌻"
+  },
+  {
+    "filename": "fotos/foto_33.jpg",
+    "original_name": "IMG_3499_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "La dueña absoluta de mis pensamientos 💭",
+    "pin": "✨"
+  },
+  {
+    "filename": "fotos/foto_34.jpg",
+    "original_name": "IMG_3510_Original.HEIC",
+    "width": 1200,
+    "height": 1606,
+    "is_portrait": true,
+    "caption": "Nuestra historia de amor favorita 📖",
+    "pin": "💖"
+  },
+  {
+    "filename": "fotos/foto_35.jpg",
+    "original_name": "IMG_3690_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Paz, complicidad y felicidad plena ✨",
+    "pin": "💛"
+  },
+  {
+    "filename": "fotos/foto_36.jpg",
+    "original_name": "IMG_3863_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Te amo hoy más que ayer y menos que mañana ❤️",
+    "pin": "🌹"
+  },
+  {
+    "filename": "fotos/foto_37.jpg",
+    "original_name": "IMG_3865_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Esa mirada que me desarma por completo 👀",
+    "pin": "❤️"
+  },
+  {
+    "filename": "fotos/foto_38.jpg",
+    "original_name": "IMG_3869_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Mi lugar seguro en este planeta 🌍",
+    "pin": "🌻"
+  },
+  {
+    "filename": "fotos/foto_39.jpg",
+    "original_name": "IMG_3876_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Cómplices de risas, secretos y sueños 🌙",
+    "pin": "✨"
+  },
+  {
+    "filename": "fotos/foto_40.jpg",
+    "original_name": "IMG_3885_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "La mujer de mis ojos y de mi vida 🌹",
+    "pin": "💖"
+  },
+  {
+    "filename": "fotos/foto_41.jpg",
+    "original_name": "IMG_4208_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Amor puro, tierno y verdadero 💖",
+    "pin": "💛"
+  },
+  {
+    "filename": "fotos/foto_42.jpg",
+    "original_name": "IMG_4210_Original.HEIC",
+    "width": 1200,
+    "height": 900,
+    "is_portrait": false,
+    "caption": "Cada recuerdo a tu lado es un tesoro 💎",
+    "pin": "🌹"
+  },
+  {
+    "filename": "fotos/foto_43.jpg",
+    "original_name": "IMG_4211_Original.HEIC",
+    "width": 1200,
+    "height": 900,
+    "is_portrait": false,
+    "caption": "Tú eres mi hogar donde sea que estemos 🏡",
+    "pin": "❤️"
+  },
+  {
+    "filename": "fotos/foto_44.jpg",
+    "original_name": "IMG_4219_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Por mil vidas más a tu lado ♾️✨",
+    "pin": "🌻"
+  },
+  {
+    "filename": "fotos/foto_45.jpg",
+    "original_name": "IMG_4224_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Inseparables y con el corazón lleno de amor 🥰",
+    "pin": "✨"
+  },
+  {
+    "filename": "fotos/foto_46.jpg",
+    "original_name": "IMG_4226_Original.HEIC",
+    "width": 1200,
+    "height": 1600,
+    "is_portrait": true,
+    "caption": "Te quiero mucho y más... ¡y te amo infinitamente! ❤️🌻",
+    "pin": "💖"
+  }
+];
+
+function initPhotoGallery() {
+  // --- 1. CARRUSEL DESTACADO ---
+  const carouselTrack = document.getElementById('carouselTrack');
+  const carouselViewport = document.getElementById('carouselViewport');
+  const prevBtn = document.getElementById('carouselPrevBtn');
+  const nextBtn = document.getElementById('carouselNextBtn');
+  const dotsContainer = document.getElementById('carouselDots');
+  const carouselSlides = document.querySelectorAll('.carousel-slide');
+  const totalSlides = carouselSlides.length;
+
+  let currentSlide = 0;
+  let autoplayTimer = null;
+
+  if (carouselTrack && totalSlides > 0) {
+    // Crear puntos indicadores (dots)
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+        dot.setAttribute('aria-label', `Ir a foto ${i + 1}`);
+        dot.addEventListener('click', () => {
+          goToSlide(i);
+          resetAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateDots() {
+      if (!dotsContainer) return;
+      const dots = dotsContainer.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+    }
+
+    function goToSlide(index) {
+      currentSlide = (index + totalSlides) % totalSlides;
+      carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      updateDots();
+    }
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoplay();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoplay();
+      });
+    }
+
+    // Swipe táctil en Carrusel
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (carouselViewport) {
+      carouselViewport.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoplay();
+      }, { passive: true });
+
+      carouselViewport.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) nextSlide();
+          else prevSlide();
+        }
+        resetAutoplay();
+      }, { passive: true });
+
+      carouselViewport.addEventListener('mouseenter', stopAutoplay);
+      carouselViewport.addEventListener('mouseleave', startAutoplay);
+    }
+
+    function startAutoplay() {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+      autoplayTimer = setInterval(nextSlide, 4200);
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    function resetAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    startAutoplay();
+
+    // Click en cualquier slide del carrusel abre el lightbox
+    carouselSlides.forEach((slide) => {
+      slide.addEventListener('click', () => {
+        const idx = parseInt(slide.getAttribute('data-index'), 10) || 0;
+        openLightbox(idx);
+      });
+    });
+  }
+
+  // --- 2. CUADRÍCULA POLAROID Y BOTÓN EXPANDIR ---
+  const btnExpand = document.getElementById('btnExpandGallery');
+  const btnExpandText = document.getElementById('btnExpandText');
+  const polaroids = document.querySelectorAll('.polaroid-item');
+  let isExpanded = false;
+
+  if (btnExpand) {
+    btnExpand.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      const hiddenItems = document.querySelectorAll('.polaroid-item[data-index]');
+
+      hiddenItems.forEach((item) => {
+        const idx = parseInt(item.getAttribute('data-index'), 10);
+        if (idx >= 12) {
+          if (isExpanded) {
+            item.classList.remove('polaroid-collapsed-hidden');
+            item.classList.add('revealed-anim');
+          } else {
+            item.classList.add('polaroid-collapsed-hidden');
+            item.classList.remove('revealed-anim');
+          }
+        }
+      });
+
+      if (isExpanded) {
+        if (btnExpandText) btnExpandText.textContent = '🌻 Ver Menos Recuerdos ❤️';
+        burstHeartsAtElement(btnExpand, 30, ['🌻', '❤️', '✨', '💛', '💖']);
+      } else {
+        if (btnExpandText) btnExpandText.textContent = 'Ver Todas Nuestras Fotos (46 Recuerdos) ❤️';
+        const galeriaEl = document.getElementById('galeria');
+        if (galeriaEl) {
+          galeriaEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+  // Click en cualquier polaroid abre el Lightbox
+  polaroids.forEach((polaroid) => {
+    polaroid.addEventListener('click', () => {
+      const idx = parseInt(polaroid.getAttribute('data-index'), 10) || 0;
+      openLightbox(idx);
+    });
+  });
+
+  // --- 3. MODAL LIGHTBOX FULL-SCREEN ---
+  const modal = document.getElementById('photoLightboxModal');
+  const backdrop = document.getElementById('lightboxBackdrop');
+  const closeBtn = document.getElementById('lightboxCloseBtn');
+  const prevPhotoBtn = document.getElementById('lightboxPrevBtn');
+  const nextPhotoBtn = document.getElementById('lightboxNextBtn');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxPin = document.getElementById('lightboxPin');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+  const lightboxLoveBtn = document.getElementById('lightboxLoveBtn');
+  const lightboxHeartBurst = document.getElementById('lightboxHeartBurst');
+  const lightboxFigure = document.getElementById('lightboxFigure');
+
+  let activePhotoIdx = 0;
+  const totalPhotos = PHOTOS_DATA.length;
+
+  function updateLightboxContent(index) {
+    activePhotoIdx = (index + totalPhotos) % totalPhotos;
+    const photo = PHOTOS_DATA[activePhotoIdx];
+    if (!photo) return;
+
+    if (lightboxImg) {
+      lightboxImg.style.opacity = '0.3';
+      lightboxImg.src = photo.filename;
+      lightboxImg.onload = () => {
+        lightboxImg.style.opacity = '1';
+      };
+    }
+
+    if (lightboxPin) lightboxPin.textContent = photo.pin || '🌻';
+    if (lightboxCaption) lightboxCaption.textContent = photo.caption || '';
+    if (lightboxCounter) lightboxCounter.textContent = `${activePhotoIdx + 1} / ${totalPhotos}`;
+  }
+
+  function openLightbox(index) {
+    if (!modal) return;
+    updateLightboxContent(index);
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function nextPhoto() {
+    updateLightboxContent(activePhotoIdx + 1);
+  }
+
+  function prevPhoto() {
+    updateLightboxContent(activePhotoIdx - 1);
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (backdrop) backdrop.addEventListener('click', closeLightbox);
+  if (nextPhotoBtn) nextPhotoBtn.addEventListener('click', nextPhoto);
+  if (prevPhotoBtn) prevPhotoBtn.addEventListener('click', prevPhoto);
+
+  // Navegación por teclado
+  window.addEventListener('keydown', (e) => {
+    if (!modal || !modal.classList.contains('active')) return;
+    if (e.key === 'ArrowRight') nextPhoto();
+    else if (e.key === 'ArrowLeft') prevPhoto();
+    else if (e.key === 'Escape') closeLightbox();
+  });
+
+  // Gestos táctiles en Lightbox (deslizar izquierda/derecha o abajo para cerrar)
+  let lbTouchStartX = 0;
+  let lbTouchStartY = 0;
+
+  if (modal) {
+    modal.addEventListener('touchstart', (e) => {
+      lbTouchStartX = e.changedTouches[0].screenX;
+      lbTouchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    modal.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const touchEndY = e.changedTouches[0].screenY;
+      const diffX = lbTouchStartX - touchEndX;
+      const diffY = touchEndY - lbTouchStartY;
+
+      if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 0) nextPhoto();
+        else prevPhoto();
+      } else if (diffY > 90) {
+        // Deslizar hacia abajo cierra el modal
+        closeLightbox();
+      }
+    }, { passive: true });
+  }
+
+  // Efecto de amor al hacer clic en el botón de me encanta
+  if (lightboxLoveBtn) {
+    lightboxLoveBtn.addEventListener('click', () => {
+      triggerHeartBurst();
+      burstHeartsAtElement(lightboxLoveBtn, 24, ['❤️', '🌻', '💖', '✨', '💛', '🌹']);
+    });
+  }
+
+  // Doble clic o doble toque en la imagen para dar amor
+  if (lightboxFigure) {
+    lightboxFigure.addEventListener('dblclick', () => {
+      triggerHeartBurst();
+      burstHeartsAtElement(lightboxFigure, 20, ['❤️', '🌻', '💖', '✨']);
+    });
+  }
+
+  function triggerHeartBurst() {
+    if (!lightboxHeartBurst) return;
+    lightboxHeartBurst.classList.add('animate');
+    setTimeout(() => {
+      lightboxHeartBurst.classList.remove('animate');
+    }, 600);
+  }
+}

@@ -905,31 +905,236 @@ body {
 }
 
 /* ==========================================================
-   SECCIÓN: GALERÍA POLAROID
+   SECCIÓN: GALERÍA DE RECUERDOS ROMÁNTICA Y 46 POLAROIDS
    ========================================================== */
+.gallery-badge-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(255, 183, 3, 0.18) 0%, rgba(239, 35, 60, 0.15) 100%);
+  border: 1.5px dashed rgba(239, 35, 60, 0.4);
+  border-radius: 50px;
+  padding: 10px 24px;
+  max-width: 520px;
+  margin: 0 auto 35px;
+  box-shadow: 0 6px 20px rgba(217, 4, 41, 0.1);
+  font-size: 1.05rem;
+  color: var(--dark-wine);
+  text-align: center;
+}
+
+.gallery-badge-icon {
+  font-size: 1.4rem;
+  animation: pulseSunflower 2s infinite ease-in-out;
+}
+
+/* --- CARRUSEL DESTACADO --- */
+.featured-carousel-section {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(239, 35, 60, 0.28);
+  border-radius: 26px;
+  padding: 24px 20px 24px;
+  max-width: 820px;
+  margin: 0 auto 50px;
+  box-shadow: var(--shadow-romantic);
+}
+
+.carousel-subheading {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.carousel-subheading h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  color: var(--primary-red);
+  display: inline-block;
+  margin: 0 8px;
+}
+
+.carousel-title-icon {
+  font-size: 1.2rem;
+}
+
+.carousel-hint {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.featured-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 18px;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  max-width: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.carousel-slide-inner {
+  position: relative;
+  height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #2b0b14;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.carousel-slide-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.carousel-slide:hover .carousel-slide-inner img {
+  transform: scale(1.04);
+}
+
+.carousel-slide-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(20, 2, 7, 0.92) 0%, rgba(20, 2, 7, 0.6) 70%, transparent 100%);
+  padding: 35px 20px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.carousel-slide-pin {
+  font-size: 1.6rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+.carousel-slide-caption {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem;
+  font-style: italic;
+  color: #fff0f3;
+  line-height: 1.35;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.carousel-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--pure-white);
+  border: 2px solid var(--ruby-red);
+  color: var(--primary-red);
+  font-size: 1.8rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(217, 4, 41, 0.22);
+  z-index: 10;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.carousel-nav-btn:hover {
+  background: var(--ruby-red);
+  color: var(--pure-white);
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(217, 4, 41, 0.35);
+}
+
+.carousel-dots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(239, 35, 60, 0.25);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+  width: 22px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--ruby-red), var(--gold-accent));
+}
+
+/* --- CUADRÍCULA POLAROID 46 FOTOS --- */
+.polaroid-collection-header {
+  text-align: center;
+  margin: 45px 0 25px;
+}
+
+.polaroid-collection-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  color: var(--deep-red);
+  margin-bottom: 6px;
+}
+
+.polaroid-collection-header p {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+}
+
 .polaroid-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  max-width: 950px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 28px;
+  max-width: 1050px;
   margin: 0 auto;
 }
 
 .polaroid-item {
   background: var(--pure-white);
-  padding: 14px 14px 22px;
-  border-radius: 6px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-  transition: var(--transition);
+  padding: 12px 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(43, 11, 20, 0.12);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
   text-align: center;
   position: relative;
   cursor: pointer;
+  border: 1px solid rgba(239, 35, 60, 0.1);
 }
 
 .polaroid-item:hover {
-  transform: translateY(-10px) rotate(0deg) scale(1.05);
-  box-shadow: 0 25px 45px rgba(217, 4, 41, 0.25);
+  transform: translateY(-8px) scale(1.03) rotate(0deg) !important;
+  box-shadow: 0 20px 42px rgba(217, 4, 41, 0.25);
   z-index: 10;
+  border-color: rgba(239, 35, 60, 0.3);
 }
 
 .polaroid-pin {
@@ -937,18 +1142,19 @@ body {
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.22));
 }
 
-.rotate-left { transform: rotate(-3deg); }
-.rotate-right { transform: rotate(3.5deg); }
-.rotate-center { transform: rotate(-1.5deg); }
-.rotate-left-alt { transform: rotate(2deg); }
+.rotate-left { transform: rotate(-2.8deg); }
+.rotate-right { transform: rotate(3deg); }
+.rotate-center { transform: rotate(-1.2deg); }
+.rotate-left-alt { transform: rotate(1.8deg); }
 
 .polaroid-img-wrapper {
   width: 100%;
-  height: 220px;
+  height: 250px;
   background: var(--rose-mist);
   border-radius: 4px;
   overflow: hidden;
@@ -956,41 +1162,373 @@ body {
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(239, 35, 60, 0.15);
+  position: relative;
 }
 
-.romantic-illu {
+.polaroid-img-wrapper img {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  transition: transform 0.4s ease;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
 }
 
-.illu-1 { background: radial-gradient(circle, #ffe5ec 0%, #ffccd5 100%); }
-.illu-2 { background: radial-gradient(circle, #ffccd5 0%, #ffb3c1 100%); }
-.illu-3 { background: radial-gradient(circle, #ffccd5 0%, #ffe5ec 100%); }
-.illu-4 { background: radial-gradient(circle, #ffe5ec 0%, #ffccd5 100%); }
-
-.polaroid-item:hover .romantic-illu {
-  transform: scale(1.1);
+.polaroid-item:hover .polaroid-img-wrapper img {
+  transform: scale(1.07);
 }
 
 .polaroid-caption {
   font-family: 'Great Vibes', cursive;
-  font-size: 1.5rem;
+  font-size: 1.55rem;
   color: var(--primary-red);
-  margin-top: 14px;
-  line-height: 1.2;
+  margin-top: 12px;
+  line-height: 1.25;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 6px;
+}
+
+.polaroid-collapsed-hidden {
+  display: none !important;
+}
+
+@keyframes polaroidFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.polaroid-item.revealed-anim {
+  animation: polaroidFadeIn 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+.gallery-expand-wrapper {
+  text-align: center;
+  margin: 38px 0 20px;
+}
+
+.btn-expand-gallery {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #ef233c 0%, #d90429 50%, #ffb703 100%);
+  color: var(--pure-white);
+  border: none;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(217, 4, 41, 0.32);
+  transition: var(--transition);
+}
+
+.btn-expand-gallery:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 38px rgba(217, 4, 41, 0.45);
+}
+
+.expand-icon {
+  font-size: 1.4rem;
+  animation: spinSunflowerSlow 8s linear infinite;
 }
 
 .polaroid-tip {
   text-align: center;
-  margin-top: 35px;
-  font-size: 0.9rem;
+  margin-top: 25px;
+  font-size: 0.92rem;
   color: var(--text-muted);
 }
+
+/* ==========================================================
+   MODAL LIGHTBOX FULL-SCREEN DE FOTOS
+   ========================================================== */
+.photo-lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.photo-lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 3, 7, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.lightbox-container {
+  position: relative;
+  z-index: 10;
+  width: 94%;
+  max-width: 920px;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: lightboxPopIn 0.32s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+@keyframes lightboxPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: -16px;
+  right: -8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--ruby-red);
+  color: var(--primary-red);
+  font-size: 1.35rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  transition: var(--transition);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+.lightbox-close-btn:hover {
+  background: var(--primary-red);
+  color: var(--pure-white);
+  transform: rotate(90deg) scale(1.1);
+}
+
+.lightbox-main-view {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.lightbox-arrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: var(--pure-white);
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.lightbox-arrow:hover {
+  background: var(--ruby-red);
+  border-color: var(--ruby-red);
+  transform: scale(1.12);
+  box-shadow: 0 6px 20px rgba(217, 4, 41, 0.45);
+}
+
+.lightbox-figure {
+  position: relative;
+  max-width: 780px;
+  max-height: 68vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.35);
+  user-select: none;
+}
+
+.lightbox-pin {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-size: 1.8rem;
+  z-index: 10;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 68vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+
+.lightbox-heart-burst {
+  position: absolute;
+  font-size: 5rem;
+  color: var(--ruby-red);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.2);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+}
+
+.lightbox-heart-burst.animate {
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+.lightbox-caption-bar {
+  margin-top: 14px;
+  width: 100%;
+  max-width: 780px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 12px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lightbox-counter {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--primary-red);
+  background: rgba(239, 35, 60, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(239, 35, 60, 0.2);
+}
+
+.lightbox-caption-text {
+  flex: 1 1 260px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--text-dark);
+  margin: 0;
+  text-align: center;
+}
+
+.lightbox-love-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #ff4d6d 0%, #d90429 100%);
+  color: var(--pure-white);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(217, 4, 41, 0.3);
+}
+
+.lightbox-love-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(217, 4, 41, 0.45);
+}
+
+/* Responsive Mobile Rules */
+@media (max-width: 768px) {
+  .carousel-slide-inner {
+    height: 300px;
+  }
+  .carousel-slide-caption {
+    font-size: 0.98rem;
+  }
+  .carousel-nav-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.5rem;
+  }
+  .polaroid-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .polaroid-item {
+    padding: 8px 8px 14px;
+  }
+  .polaroid-img-wrapper {
+    height: 190px;
+  }
+  .polaroid-caption {
+    font-size: 1.25rem;
+    min-height: 2.2rem;
+  }
+  .lightbox-arrow {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    font-size: 1.8rem;
+    background: rgba(0, 0, 0, 0.45);
+  }
+  .lightbox-arrow-prev {
+    left: 8px;
+  }
+  .lightbox-arrow-next {
+    right: 8px;
+  }
+  .lightbox-figure {
+    max-height: 60vh;
+  }
+  .lightbox-image {
+    max-height: 60vh;
+  }
+  .lightbox-caption-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 14px;
+  }
+}
+
 
 /* ==========================================================
    SECCIÓN: FRASES SORPRESA
